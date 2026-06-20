@@ -1,6 +1,8 @@
 import ProximosJogos from "./ProximosJogos";
 
-function jogos() {
+let jogosCache = null;
+
+function buildJogos() {
     let jogos = [];
 
     jogos.push({ "mandante": "Bahia", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 1, "campeonato": "Brasileirão 2026", "data": "2026-05-30", "estadio": "Fonte Nova", "horario": "17:30" });
@@ -6194,4 +6196,13 @@ function jogos() {
 
     return jogos;
 }
+
+function jogos() {
+    if (jogosCache) {
+        return jogosCache;
+    }
+    jogosCache = buildJogos();
+    return jogosCache;
+}
+
 export default jogos;

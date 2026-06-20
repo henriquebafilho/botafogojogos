@@ -1,10 +1,10 @@
 import Times from '../Times';
 import Tabs from '../components/Tabs';
-import BotafogoJogos from '../TodosOsJogos/BotafogoJogos';
+import common from '../common';
 
 function Perfil(props) {
   const meuTime = props.meuTime;
-  let meusJogos = BotafogoJogos();
+  let meusJogos = common.jogos;
   meusJogos.sort(function (a, b) {
     return a.data < b.data ? -1 : a.data > b.data ? 1 : 0;
   });

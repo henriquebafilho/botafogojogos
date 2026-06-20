@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Times from '../Times';
 import common from '../common';
 import ViewEstadio from './viewScreens/ViewEstadio';
-import BotafogoJogos from '../TodosOsJogos/BotafogoJogos';
 
 class Estadios extends Component {
   constructor(props) {
@@ -15,7 +14,8 @@ class Estadios extends Component {
       isLoading: false,
       clicked: false,
       estadioAtual: '',
-      jogosEstadio: []
+      jogosEstadio: [],
+      searchTerm: ''
     }
     this.buttonClick = this.buttonClick.bind(this);
   }
@@ -41,7 +41,7 @@ class Estadios extends Component {
 
   getJogos = async () => {
     this.setState({ isLoading: true });
-    const jogos = BotafogoJogos().filter(jogo => jogo.golsMandante !== "" && jogo.golsVisitante !== "");
+    const jogos = common.jogos;
     this.setState({ jogos, isLoading: false });
     return jogos;
   }
@@ -83,7 +83,8 @@ class Estadios extends Component {
 
   searchStadium = async (e) => {
     const jogos = this.state.jogos;
-    const normalizedSearchTerm = e.target.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+    const searchTerm = e.target.value;
+    const normalizedSearchTerm = searchTerm.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
     const filtered = this.state.estadios.filter(estadio => {
       const normalizedEstadio = estadio.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
       return normalizedEstadio.includes(normalizedSearchTerm);
@@ -102,7 +103,7 @@ class Estadios extends Component {
       }
       return 0;
     });
-    this.setState({ filtered });
+    this.setState({ filtered, searchTerm });
   }
 
   render() {
@@ -122,6 +123,7 @@ class Estadios extends Component {
                 <input
                   type="text"
                   placeholder="Insira o nome do estádio"
+                  value={this.state.searchTerm}
                   onChange={this.searchStadium}
                   style={{
                     width: '100%',

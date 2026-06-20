@@ -2,10 +2,16 @@ import Times from './Times';
 import BotafogoJogos from './TodosOsJogos/BotafogoJogos';
 
 const jogos = BotafogoJogos().filter(jogo => jogo.golsMandante !== "" && jogo.golsVisitante !== "");
+const adversarioTotalsCache = new Map();
 
 const getTotalAdversario = (meuTime, adversario) => {
-    var total = 0;
-    var adversarioAtual = Times(adversario).nomeAtual;
+    const cacheKey = `${meuTime}|${adversario}`;
+    if (adversarioTotalsCache.has(cacheKey)) {
+        return adversarioTotalsCache.get(cacheKey);
+    }
+
+    let total = 0;
+    const adversarioAtual = Times(adversario).nomeAtual;
 
     for (var a in jogos) {
         if (((jogos[a].mandante === meuTime) && (Times(jogos[a].visitante).nomeAtual === adversarioAtual)) ||
@@ -14,6 +20,7 @@ const getTotalAdversario = (meuTime, adversario) => {
         }
     }
 
+    adversarioTotalsCache.set(cacheKey, total);
     return total;
 }
 
@@ -96,6 +103,7 @@ const getDerrotas = (meuTime, jogos) => {
 const textShadow = "0 0 3px #000000, 0 0 3px #000000, 0 0 3px #000000, 0 0 3px #000000, 0 0 3px #000000";
 
 const commonFunctions = {
+    jogos,
     getTotalAdversario,
     getTotalEstadio,
     getTotalAno,

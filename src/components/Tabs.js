@@ -5,7 +5,7 @@ import Estadios from '../pages/Estadios';
 import Times from '../Times';
 import LinhaJogo from './LinhaJogo';
 import ProximosJogos from '../pages/ProximosJogos';
-import BotafogoJogos from '../TodosOsJogos/BotafogoJogos';
+import common from '../common';
 
 class Tabs extends Component {
     constructor(props) {
@@ -39,13 +39,11 @@ class Tabs extends Component {
             day: '2-digit'
         }).format(new Date());
     
-        const todosOsJogos = BotafogoJogos();
+        const todosOsJogos = common.jogos;
+        const jogosRecentes = todosOsJogos.slice().reverse().slice(0, 20);
     
         this.setState({
-            meusJogos: todosOsJogos
-                .filter(jogo => jogo.golsMandante !== "" && jogo.golsVisitante !== "")
-                .reverse()
-                .slice(0, 20),
+            meusJogos: jogosRecentes,
             jogoHoje: todosOsJogos.find(jogo => 
                 jogo.data === hojeBrasilia && 
                 jogo.golsMandante === "" && 
@@ -92,9 +90,10 @@ class Tabs extends Component {
         let meuTime = this.state.meuTime;
         let ultimos = this.state.ultimos;
         let anoAtual = 0;
+        const meuTimeStyle = Times(this.props.meuTime);
 
         return (
-            <div className="container" style={{ color: Times(this.props.meuTime).letterColor, backgroundColor: Times(this.props.meuTime).backgroundColor, border: "3px" }}>
+            <div className="container" style={{ color: meuTimeStyle.letterColor, backgroundColor: meuTimeStyle.backgroundColor, border: "3px" }}>
                 <div className="bloc-tabs">
                     <button id="tab" className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(1)}>
                         Recentes
@@ -112,7 +111,7 @@ class Tabs extends Component {
 
                 <div className="content-tabs">
                     <div className={toggleState === 1 ? "content  active-content" : "content"}>
-                        <div className="container" style={{ color: Times(this.props.meuTime).letterColor, backgroundColor: Times(this.props.meuTime).backgroundColor, border: "3px", maxWidth: '80%', marginBottom: '20px' }}>
+                        <div className="container" style={{ color: meuTimeStyle.letterColor, backgroundColor: meuTimeStyle.backgroundColor, border: "3px", maxWidth: '80%', marginBottom: '20px' }}>
                             <div className="bloc-tabs">
                                 <button id="tab" className={ultimos === 1 ? "tabs active-tabs" : "tabs"} onClick={() => recentesTab(1)}>
                                     Últimos Jogos
@@ -123,9 +122,9 @@ class Tabs extends Component {
                             </div>
                         </div>
                         {ultimos === 1 ?
-                            <div className="container" style={{ color: Times(this.props.meuTime).letterColor, backgroundColor: Times(this.props.meuTime).backgroundColor }}>
+                            <div className="container" style={{ color: meuTimeStyle.letterColor, backgroundColor: meuTimeStyle.backgroundColor }}>
                                 {this.state.jogoHoje && <div key={"Hoje"}>
-                                    <h1 style={{ textAlign: 'center', color: Times(meuTime).letterColor, margin: '40px' }}>Hoje</h1>
+                                    <h1 style={{ textAlign: 'center', color: meuTimeStyle.letterColor, margin: '40px' }}>Hoje</h1>
                                     <LinhaJogo meuTime={meuTime} jogo={this.state.jogoHoje} onSelectEstadio={this.selectEstadio} onSelectAdversario={this.selectAdversario} />
                                 </div>}
                                 {meusJogos.length > 0 ? meusJogos.map((index) => {
@@ -135,11 +134,11 @@ class Tabs extends Component {
                                         mostraAno = true;
                                     }
                                     return <div key={JSON.stringify(index)}>
-                                        {mostraAno ? <h1 style={{ textAlign: 'center', color: Times(meuTime).letterColor, margin: '40px' }}>{anoAtual}</h1> : ""}
+                                        {mostraAno ? <h1 style={{ textAlign: 'center', color: meuTimeStyle.letterColor, margin: '40px' }}>{anoAtual}</h1> : ""}
                                         <LinhaJogo meuTime={meuTime} jogo={index} onSelectEstadio={this.selectEstadio} onSelectAdversario={this.selectAdversario} />
                                     </div>
                                 }) : <div>
-                                    <h4 style={{ color: Times(meuTime).letterColor, textAlign: 'center' }}>Nenhum jogo cadastrado</h4>
+                                    <h4 style={{ color: meuTimeStyle.letterColor, textAlign: 'center' }}>Nenhum jogo cadastrado</h4>
                                 </div>}
                             </div>
                             :

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Times from '../../Times';
 import Estatisticas from '../../components/Estatisticas';
 import LinhaJogo from '../../components/LinhaJogo';
-import BotafogoJogos from '../../TodosOsJogos/BotafogoJogos';
+import common from '../../common';
 
 class ViewAdversario extends Component {
   constructor(props) {
@@ -35,8 +35,7 @@ class ViewAdversario extends Component {
     this.setState({ isLoading: true });
     const adversarioSelecionado = this.props.adversario;
     const adversario = [adversarioSelecionado, ...Times(adversarioSelecionado).nomesAnteriores];
-    var jogosAdversario = BotafogoJogos().filter(jogo =>
-      (jogo.golsMandante !== "" && jogo.golsVisitante !== "") &&
+    var jogosAdversario = common.jogos.filter(jogo =>
       ((adversario.includes(jogo.mandante) && jogo.visitante === this.props.meuTime) ||
         (jogo.mandante === this.props.meuTime && adversario.includes(jogo.visitante)))
     );
@@ -48,19 +47,21 @@ class ViewAdversario extends Component {
 
   render() {
     const meuTime = this.props.meuTime;
+    const meuTimeStyle = Times(meuTime);
+    const adversarioStyle = Times(this.props.adversario);
     let anoAtual = 0;
     const jogos = [...this.state.jogosAdversario].reverse();
 
     return (
-      <div style={{ backgroundColor: Times(this.props.meuTime).backgroundColor, color: Times(this.props.meuTime).letterColor }}>
+      <div style={{ backgroundColor: meuTimeStyle.backgroundColor, color: meuTimeStyle.letterColor }}>
         <div className='a' key="voltar">
-          <button style={{ outline: 'none', border: 'none', textDecoration: 'underline', fontSize: '25px', cursor: 'pointer', backgroundColor: Times(this.props.meuTime).backgroundColor, color: Times(this.props.meuTime).letterColor }} onClick={this.props.onBack}>{"< Voltar"}</button>
+          <button style={{ outline: 'none', border: 'none', textDecoration: 'underline', fontSize: '25px', cursor: 'pointer', backgroundColor: meuTimeStyle.backgroundColor, color: meuTimeStyle.letterColor }} onClick={this.props.onBack}>{"< Voltar"}</button>
         </div>
         <div className="App-header">
           <div>
             <div style={{ float: 'left', textAlign: 'center' }}>
               <img
-                src={process.env.PUBLIC_URL + '/escudos/' + Times(meuTime).escudo + '.png'}
+                src={process.env.PUBLIC_URL + '/escudos/' + meuTimeStyle.escudo + '.png'}
                 style={{ display: 'inline', verticalAlign: 'middle', width: "4em", height: "4em", margin: '10px' }}
                 alt={meuTime}
                 loading='lazy'
@@ -75,13 +76,13 @@ class ViewAdversario extends Component {
               style={{
                 float: 'left',
                 textAlign: 'center',
-                border: '5px solid' + Times(this.props.adversario).backgroundColor,
+                border: '5px solid' + adversarioStyle.backgroundColor,
                 borderRadius: '5px',
-                backgroundColor: Times(this.props.adversario).backgroundColor,
-                color: Times(this.props.adversario).letterColor
+                backgroundColor: adversarioStyle.backgroundColor,
+                color: adversarioStyle.letterColor
               }}>
               <img
-                src={process.env.PUBLIC_URL + '/escudos/' + Times(this.props.adversario).escudo + '.png'}
+                src={process.env.PUBLIC_URL + '/escudos/' + adversarioStyle.escudo + '.png'}
                 style={{ display: 'inline', verticalAlign: 'middle', width: "4em", height: "4em", margin: '10px' }}
                 alt={this.props.adversario}
                 loading='lazy'
@@ -98,9 +99,9 @@ class ViewAdversario extends Component {
               anoAtual = index.data.split("-")[0];
               mostraAno = true;
             }
-            return <div style={{ width: '100%' }}>
-              {mostraAno ? <h1 style={{ textAlign: 'center', color: Times(meuTime).letterColor, margin: '40px' }}>{anoAtual}</h1> : ""}
-              <LinhaJogo key={JSON.stringify(index)} meuTime={meuTime} jogo={index} onSelectEstadio={this.props.onSelectEstadio} disableTeamClick={true} />
+            return <div key={JSON.stringify(index)} style={{ width: '100%' }}>
+              {mostraAno ? <h1 style={{ textAlign: 'center', color: meuTimeStyle.letterColor, margin: '40px' }}>{anoAtual}</h1> : ""}
+              <LinhaJogo meuTime={meuTime} jogo={index} onSelectEstadio={this.props.onSelectEstadio} disableTeamClick={true} />
             </div>
           })}
         </div>

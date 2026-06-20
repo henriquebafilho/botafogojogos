@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Times from '../Times';
 import common from '../common';
 import ViewAno from './viewScreens/ViewAno';
-import BotafogoJogos from '../TodosOsJogos/BotafogoJogos';
 import Estatisticas from '../components/Estatisticas';
 
 class Anos extends Component {
@@ -16,7 +15,8 @@ class Anos extends Component {
       isLoading: false,
       clicked: false,
       anoAtual: '',
-      jogosAno: []
+      jogosAno: [],
+      searchTerm: ''
     }
     this.buttonClick = this.buttonClick.bind(this);
   }
@@ -28,7 +28,7 @@ class Anos extends Component {
 
   getJogos = async () => {
     this.setState({ isLoading: true });
-    const jogos = BotafogoJogos().filter(jogo => jogo.golsMandante !== "" && jogo.golsVisitante !== "");
+    const jogos = common.jogos;
     this.setState({ jogos, isLoading: false });
     return jogos;
   }
@@ -57,7 +57,8 @@ class Anos extends Component {
   }
 
   searchAno = async (e) => {
-    this.setState({ filtered: this.state.anos.filter(ano => ano.toString().trim().includes(e.target.value.trim())) })
+    const searchTerm = e.target.value;
+    this.setState({ filtered: this.state.anos.filter(ano => ano.toString().trim().includes(searchTerm.trim())), searchTerm });
   }
 
   render() {
@@ -77,6 +78,7 @@ class Anos extends Component {
                   type="number"
                   inputMode='numeric'
                   placeholder="Insira o ano"
+                  value={this.state.searchTerm}
                   onChange={this.searchAno}
                   style={{
                     width: '100%',

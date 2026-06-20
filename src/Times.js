@@ -1,4 +1,11 @@
+const timesCache = new Map();
+
 function Times(time, data) {
+      const cacheKey = `${time || ''}|${data || ''}`;
+      if (timesCache.has(cacheKey)) {
+            return timesCache.get(cacheKey);
+      }
+
       var nomeAtual, escudo, backgroundColor, letterColor, nomesAnteriores = [];
 
       if (data != null) {

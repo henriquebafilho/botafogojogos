@@ -53,25 +53,29 @@ class LinhaJogo extends Component {
         const mandante = this.props.jogo.mandante;
         const visitante = this.props.jogo.visitante;
         const estadio = this.props.jogo.estadio;
+        const jogoData = this.props.jogo.data;
         const disableTeamClick = this.props.disableTeamClick;
         const disableEstadioClick = this.props.disableEstadioClick;
+        const mandanteStyle = Times(mandante, jogoData);
+        const visitanteStyle = Times(visitante, jogoData);
+        const meuTimeStyle = Times(this.props.meuTime);
         const mandanteClickable = !disableTeamClick && mandante !== this.props.meuTime && this.props.onSelectAdversario;
         const visitanteClickable = !disableTeamClick && visitante !== this.props.meuTime && this.props.onSelectAdversario;
         const estadioClickable = estadio && estadio !== "" && this.props.onSelectEstadio && !disableEstadioClick;
         return (
             <div className='divJogo'
                 style={{
-                    background: "linear-gradient(90deg, " + Times(this.props.jogo.mandante, this.props.jogo.data).backgroundColor + " 49%, " + Times(this.props.jogo.visitante, this.props.jogo.data).backgroundColor + " 52%)",
+                    background: "linear-gradient(90deg, " + mandanteStyle.backgroundColor + " 49%, " + visitanteStyle.backgroundColor + " 52%)",
                     paddingLeft: '10px',
                     paddingBottom: '10px',
                     marginBottom: '10px',
                     width: '100%',
-                    borderColor: Times(this.props.meuTime).backgroundColor === 'white' ? 'black' : 'white'
+                    borderColor: meuTimeStyle.backgroundColor === 'white' ? 'black' : 'white'
                 }}
                 key={JSON.stringify(this.props.jogo)}
             >
                 <div>
-                    <FaCalendarAlt style={{ color: Times(this.props.jogo.mandante).letterColor, paddingRight: "5px" }} />
+                    <FaCalendarAlt style={{ color: mandanteStyle.letterColor, paddingRight: "5px" }} />
                     <p style={{
                         textShadow: Common.textShadow,
                         color: "white",
@@ -81,7 +85,7 @@ class LinhaJogo extends Component {
                     </p>
                 </div>
                 <div>
-                    <p style={{ textShadow: Common.textShadow, color: "white", fontSize: '1em' }}><FaTrophy style={{ color: Times(this.props.jogo.mandante).letterColor }} /> {this.props.jogo.campeonato}</p>
+                    <p style={{ textShadow: Common.textShadow, color: "white", fontSize: '1em' }}><FaTrophy style={{ color: mandanteStyle.letterColor }} /> {this.props.jogo.campeonato}</p>
                     <p
                         style={{
                             textShadow: Common.textShadow,
@@ -93,7 +97,7 @@ class LinhaJogo extends Component {
                         onClick={estadioClickable ? () => { this.scrollToTop(); this.props.onSelectEstadio(estadio); } : undefined}
                         title={estadioClickable ? 'Ver estádio' : ''}
                     >
-                        <MdStadium style={{ color: Times(this.props.jogo.mandante).letterColor }} /> {estadio !== "" ? estadio : " - "}
+                        <MdStadium style={{ color: mandanteStyle.letterColor }} /> {estadio !== "" ? estadio : " - "}
                     </p>
                 </div>
                 <div id='placar' style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
@@ -107,7 +111,7 @@ class LinhaJogo extends Component {
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         whiteSpace: 'nowrap',
-                        color: Times(this.props.jogo.mandante, this.props.jogo.data).letterColor,
+                        color: mandanteStyle.letterColor,
                         cursor: mandanteClickable ? 'pointer' : 'default'
                     }}
                         onClick={mandanteClickable ? () => { this.scrollToTop(); this.props.onSelectAdversario(mandante); } : undefined}
@@ -117,7 +121,7 @@ class LinhaJogo extends Component {
                     </p>
                     <img
                         className='escudoLinha'
-                        src={process.env.PUBLIC_URL + '/escudos/' + Times(this.props.jogo.mandante, this.props.jogo.data).escudo + '.png'}
+                        src={process.env.PUBLIC_URL + '/escudos/' + mandanteStyle.escudo + '.png'}
                         title={this.props.jogo.mandante}
                         style={{ display: 'inline-block', verticalAlign: 'middle' }}
                         alt={this.props.jogo.mandante}
@@ -131,7 +135,7 @@ class LinhaJogo extends Component {
                         {this.props.jogo.golsMandante !== "WO" && this.props.jogo.golsVisitante !== "WO" && this.props.jogo.golsMandante !== "" && this.props.jogo.golsVisitante !== "" && ' ' + this.props.jogo.golsMandante + ' x ' + this.props.jogo.golsVisitante + ' '}
                     </div>
                     <img
-                        className='escudoLinha' src={process.env.PUBLIC_URL + '/escudos/' + Times(this.props.jogo.visitante, this.props.jogo.data).escudo + '.png'}
+                        className='escudoLinha' src={process.env.PUBLIC_URL + '/escudos/' + visitanteStyle.escudo + '.png'}
                         title={this.props.jogo.visitante}
                         style={{ display: 'inline-block', verticalAlign: 'middle' }}
                         alt={this.props.jogo.visitante}
@@ -145,7 +149,7 @@ class LinhaJogo extends Component {
                             display: 'inline',
                             width: "40%",
                             textAlign: "left",
-                            color: Times(this.props.jogo.visitante, this.props.jogo.data).letterColor,
+                            color: visitanteStyle.letterColor,
                             paddingLeft: '5px',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
