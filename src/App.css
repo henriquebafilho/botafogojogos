@@ -93,6 +93,23 @@ details[open] summary~* {
   font-weight: bold;
 }
 
+/* (adversary card styles removed -- changes reverted) */
+
+/* Styles for adversary title in the ViewAdversario header */
+/* Header adversary/title styling: center and allow wrap under the escudo */
+#tituloAdversario{
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.1;
+  font-size: clamp(10px, 1.1vw, 14px);
+  max-height: 3rem;
+}
+
 #selectAdversario:hover,
 #selectEstadio:hover,
 #selectAno:hover {
@@ -299,6 +316,7 @@ button#tab {
   }
   .nomeTime{
     font-size: 2.5vw;
+    max-height: 3em;
   }
 }
 
@@ -328,5 +346,17 @@ button#tab {
   }
   .nomeTime{
     font-size: 20px;
+    max-height: 4rem;
   }
+}
+
+/* Allow team names to wrap into multiple lines but limit their height
+   so LinhaJogo doesn't grow beyond the escudo height. */
+.nomeTime{
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  line-height: 1.1;
+  white-space: normal;
+  word-break: break-word;
 }

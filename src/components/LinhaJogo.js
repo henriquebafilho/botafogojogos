@@ -100,19 +100,15 @@ class LinhaJogo extends Component {
                         <MdStadium style={{ color: mandanteStyle.letterColor }} /> {estadio !== "" ? estadio : " - "}
                     </p>
                 </div>
-                <div id='placar' style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                <div id='placar' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
                     <p className='nomeTime' style={{
-                        paddingTop: '20px',
-                        paddingBottom: '20px',
-                        display: 'inline',
+                        display: 'inline-block',
                         width: "40%",
                         textAlign: "right",
                         paddingRight: '5px',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
                         color: mandanteStyle.letterColor,
-                        cursor: mandanteClickable ? 'pointer' : 'default'
+                        cursor: mandanteClickable ? 'pointer' : 'default',
+                        verticalAlign: 'middle'
                     }}
                         onClick={mandanteClickable ? () => { this.scrollToTop(); this.props.onSelectAdversario(mandante); } : undefined}
                         title={mandanteClickable ? 'Ver adversário' : ''}
@@ -128,10 +124,10 @@ class LinhaJogo extends Component {
                         loading='lazy'
                         onError={(e) => { e.target.src = '/escudos/escudo.png' }}
                     />
-                    <div style={{ paddingTop: '1%', display: 'inline', minWidth: this.props.jogo.golsMandante === "" && this.props.jogo.golsVisitante === "" ? "40px" : "90px", textAlign: "center", fontSize: '2em', textShadow: Common.textShadow, color: "white" }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: this.props.jogo.golsMandante === "" && this.props.jogo.golsVisitante === "" ? "40px" : "90px", textAlign: "center", fontSize: '2em', textShadow: Common.textShadow, color: "white" }}>
                         {(this.props.jogo.golsMandante === "WO" || this.props.jogo.golsVisitante === "WO") && <div>WO</div>}
                         {this.props.jogo.golsMandante === "WO" ? <div>←</div> : this.props.jogo.golsVisitante === "WO" ? <div>→</div> : ''}
-                        {this.props.jogo.golsMandante !== "WO" && this.props.jogo.golsVisitante !== "WO" && this.props.jogo.golsMandante === "" && this.props.jogo.golsVisitante === "" && <p className="horario" style={{ fontSize: "13px", paddingTop: "20%", minWidth: "41px" }}>{this.props.jogo.horario ? this.props.jogo.horario : " X "}</p>}
+                        {this.props.jogo.golsMandante !== "WO" && this.props.jogo.golsVisitante !== "WO" && this.props.jogo.golsMandante === "" && this.props.jogo.golsVisitante === "" && <p className="horario" style={{ fontSize: "13px", minWidth: "41px" }}>{this.props.jogo.horario ? this.props.jogo.horario : " X "}</p>}
                         {this.props.jogo.golsMandante !== "WO" && this.props.jogo.golsVisitante !== "WO" && this.props.jogo.golsMandante !== "" && this.props.jogo.golsVisitante !== "" && ' ' + this.props.jogo.golsMandante + ' x ' + this.props.jogo.golsVisitante + ' '}
                     </div>
                     <img
@@ -144,17 +140,13 @@ class LinhaJogo extends Component {
                     />
                     <p className='nomeTime'
                         style={{
-                            paddingTop: '20px',
-                            paddingBottom: '20px',
-                            display: 'inline',
+                            display: 'inline-block',
                             width: "40%",
                             textAlign: "left",
                             color: visitanteStyle.letterColor,
                             paddingLeft: '5px',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                            cursor: visitanteClickable ? 'pointer' : 'default'
+                            cursor: visitanteClickable ? 'pointer' : 'default',
+                            verticalAlign: 'middle'
                         }}
                         onClick={visitanteClickable ? () => { this.scrollToTop(); this.props.onSelectAdversario(visitante); } : undefined}
                         title={visitanteClickable ? 'Ver adversário' : ''}
