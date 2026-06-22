@@ -58,45 +58,31 @@ class ViewAdversario extends Component {
           <button style={{ outline: 'none', border: 'none', textDecoration: 'underline', fontSize: '25px', cursor: 'pointer', backgroundColor: meuTimeStyle.backgroundColor, color: meuTimeStyle.letterColor }} onClick={this.props.onBack}>{"< Voltar"}</button>
         </div>
         <div className="App-header">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.25rem' }}>
-            <div style={{ textAlign: 'center', width: '10rem', height: '10rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: meuTimeStyle.backgroundColor, border: '3px solid ' + meuTimeStyle.backgroundColor, borderRadius: '10px', color: meuTimeStyle.letterColor, boxSizing: 'border-box', padding: '0.5rem' }}>
-              <img
-                src={process.env.PUBLIC_URL + '/escudos/' + meuTimeStyle.escudo + '.png'}
-                style={{ width: "4.5rem", height: "4.5rem", margin: 0, marginBottom: '0.75rem' }}
-                alt={meuTime}
-                loading='lazy'
-                onError={(e) => { e.target.src = '/escudos/escudo.png' }}
-              />
-              <p id='tituloAdversario' style={{ padding: '0.15rem 0 0 0', margin: 0, width: '100%', fontSize: 'clamp(12px, 1.2vw, 15px)', maxHeight: '2.4rem' }}>{meuTime}</p>
+          <div className="view-adversario-header" style={{ background: 'linear-gradient(90deg, ' + meuTimeStyle.backgroundColor + ' 0%, ' + meuTimeStyle.backgroundColor + ' calc(50% - 1.75rem), ' + meuTimeStyle.backgroundColor + ' calc(50% - 0.875rem), ' + adversarioStyle.backgroundColor + ' calc(50% + 0.875rem), ' + adversarioStyle.backgroundColor + ' calc(50% + 1.75rem), ' + adversarioStyle.backgroundColor + ' 100%)' }}>
+            <div className="view-adversario-team-card" style={{ color: meuTimeStyle.letterColor }}>
+              <div className="view-adversario-team-inner">
+                <img
+                  src={process.env.PUBLIC_URL + '/escudos/' + meuTimeStyle.escudo + '.png'}
+                  alt={meuTime}
+                  loading='lazy'
+                  onError={(e) => { e.target.src = '/escudos/escudo.png' }}
+                />
+                <p id='tituloAdversario' style={{ padding: '0.15rem 0 0 0', margin: 0 }}>{meuTime}</p>
+              </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '2.5rem', height: '10rem' }}>
-              <h1 style={{ margin: 0, fontSize: '1.5rem' }}> x </h1>
+            <div className="view-adversario-x-card" style={{ backgroundColor: 'transparent' }}>
+              <span>x</span>
             </div>
-            <div
-              style={{
-                textAlign: 'center',
-                border: '3px solid ' + adversarioStyle.backgroundColor,
-                borderRadius: '10px',
-                backgroundColor: adversarioStyle.backgroundColor,
-                color: adversarioStyle.letterColor,
-                width: '10rem',
-                height: '10rem',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxSizing: 'border-box',
-                padding: '0.5rem',
-                overflow: 'hidden'
-              }}>
-              <img
-                src={process.env.PUBLIC_URL + '/escudos/' + adversarioStyle.escudo + '.png'}
-                style={{ width: "4.5rem", height: "4.5rem", margin: 0, marginBottom: '0.75rem' }}
-                alt={this.props.adversario}
-                loading='lazy'
-                onError={(e) => { e.target.src = '/escudos/escudo.png' }}
-              />
-              <p id='tituloAdversario' style={{ padding: '0.15rem 0 0 0', margin: 0, width: '100%', fontSize: 'clamp(12px, 1.2vw, 15px)', maxHeight: '2.4rem' }}>{this.props.adversario}</p>
+            <div className="view-adversario-team-card" style={{ color: adversarioStyle.letterColor }}>
+              <div className="view-adversario-team-inner">
+                <img
+                  src={process.env.PUBLIC_URL + '/escudos/' + adversarioStyle.escudo + '.png'}
+                  alt={this.props.adversario}
+                  loading='lazy'
+                  onError={(e) => { e.target.src = '/escudos/escudo.png' }}
+                />
+                <p id='tituloAdversario' style={{ padding: '0.15rem 0 0 0', margin: 0 }}>{this.props.adversario}</p>
+              </div>
             </div>
           </div>
           <br />
