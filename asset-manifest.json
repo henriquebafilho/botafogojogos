@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/jogosquefui/static/css/main.f25218ea.css",
-    "main.js": "/jogosquefui/static/js/main.df06f347.js",
-    "index.html": "/jogosquefui/index.html",
-    "main.f25218ea.css.map": "/jogosquefui/static/css/main.f25218ea.css.map",
-    "main.df06f347.js.map": "/jogosquefui/static/js/main.df06f347.js.map"
+    "main.css": "/botafogojogos/static/css/main.f25218ea.css",
+    "main.js": "/botafogojogos/static/js/main.a8fd8873.js",
+    "index.html": "/botafogojogos/index.html",
+    "main.f25218ea.css.map": "/botafogojogos/static/css/main.f25218ea.css.map",
+    "main.a8fd8873.js.map": "/botafogojogos/static/js/main.a8fd8873.js.map"
   },
   "entrypoints": [
     "static/css/main.f25218ea.css",
-    "static/js/main.df06f347.js"
+    "static/js/main.a8fd8873.js"
   ]
 }
