@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/botafogojogos/static/css/main.f25218ea.css",
-    "main.js": "/botafogojogos/static/js/main.a8fd8873.js",
+    "main.js": "/botafogojogos/static/js/main.d0ee2387.js",
     "index.html": "/botafogojogos/index.html",
     "main.f25218ea.css.map": "/botafogojogos/static/css/main.f25218ea.css.map",
-    "main.a8fd8873.js.map": "/botafogojogos/static/js/main.a8fd8873.js.map"
+    "main.d0ee2387.js.map": "/botafogojogos/static/js/main.d0ee2387.js.map"
   },
   "entrypoints": [
     "static/css/main.f25218ea.css",
-    "static/js/main.a8fd8873.js"
+    "static/js/main.d0ee2387.js"
   ]
 }
