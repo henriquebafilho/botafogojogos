@@ -15,9 +15,9 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route exact path='/jogosquefui' element={<Perfil meuTime={meuTime} />} />
-          <Route exact path='/jogosquefui/anos/' element={<Anos meuTime={meuTime} />} />
-          <Route exact path='/jogosquefui/anos/:ano' element={<ViewAno />} />
+          <Route exact path='/botafogojogos' element={<Perfil meuTime={meuTime} />} />
+          <Route exact path='/botafogojogos/anos/' element={<Anos meuTime={meuTime} />} />
+          <Route exact path='/botafogojogos/anos/:ano' element={<ViewAno />} />
         </Routes>
       </Router>
       <VoltarAoTopo />
