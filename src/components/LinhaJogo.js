@@ -86,18 +86,14 @@ class LinhaJogo extends Component {
                 </div>
                 <div>
                     <p style={{ textShadow: Common.textShadow, color: "white", fontSize: '1em' }}><FaTrophy style={{ color: mandanteStyle.letterColor }} /> {this.props.jogo.campeonato}</p>
-                    <p
-                        style={{
-                            textShadow: Common.textShadow,
-                            color: "white",
-                            marginBottom: '5px',
-                            fontSize: '1em',
-                            cursor: estadioClickable ? 'pointer' : 'default'
-                        }}
-                        onClick={estadioClickable ? () => { this.scrollToTop(); this.props.onSelectEstadio(estadio); } : undefined}
-                        title={estadioClickable ? 'Ver estádio' : ''}
-                    >
-                        <MdStadium style={{ color: mandanteStyle.letterColor }} /> {estadio !== "" ? estadio : " - "}
+                    <p style={{ textShadow: Common.textShadow, color: "white", marginBottom: '5px', fontSize: '1em' }}>
+                        <span
+                            style={{ cursor: estadioClickable ? 'pointer' : 'default' }}
+                            onClick={estadioClickable ? () => { this.scrollToTop(); this.props.onSelectEstadio(estadio); } : undefined}
+                            title={estadioClickable ? 'Ver estádio' : ''}
+                        >
+                            <MdStadium style={{ color: mandanteStyle.letterColor }} /> {estadio !== "" ? estadio : " - "}
+                        </span>
                     </p>
                 </div>
                 <div id='placar' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
@@ -107,13 +103,15 @@ class LinhaJogo extends Component {
                         textAlign: "right",
                         paddingRight: '5px',
                         color: mandanteStyle.letterColor,
-                        cursor: mandanteClickable ? 'pointer' : 'default',
                         verticalAlign: 'middle'
-                    }}
-                        onClick={mandanteClickable ? () => { this.scrollToTop(); this.props.onSelectAdversario(mandante); } : undefined}
-                        title={mandanteClickable ? 'Ver adversário' : ''}
-                    >
-                        {mandante.toUpperCase()}
+                    }}>
+                        <span
+                            style={{ cursor: mandanteClickable ? 'pointer' : 'default', display: 'inline-block' }}
+                            onClick={mandanteClickable ? () => { this.scrollToTop(); this.props.onSelectAdversario(mandante); } : undefined}
+                            title={mandanteClickable ? 'Ver adversário' : ''}
+                        >
+                            {mandante.toUpperCase()}
+                        </span>
                     </p>
                     <img
                         className='escudoLinha'
@@ -145,13 +143,15 @@ class LinhaJogo extends Component {
                             textAlign: "left",
                             color: visitanteStyle.letterColor,
                             paddingLeft: '5px',
-                            cursor: visitanteClickable ? 'pointer' : 'default',
                             verticalAlign: 'middle'
-                        }}
-                        onClick={visitanteClickable ? () => { this.scrollToTop(); this.props.onSelectAdversario(visitante); } : undefined}
-                        title={visitanteClickable ? 'Ver adversário' : ''}
-                    >
-                        {visitante.toUpperCase()}
+                        }}>
+                        <span
+                            style={{ cursor: visitanteClickable ? 'pointer' : 'default', display: 'inline-block' }}
+                            onClick={visitanteClickable ? () => { this.scrollToTop(); this.props.onSelectAdversario(visitante); } : undefined}
+                            title={visitanteClickable ? 'Ver adversário' : ''}
+                        >
+                            {visitante.toUpperCase()}
+                        </span>
                     </p>
                 </div>
                 {this.props.jogo.penaltis &&
