@@ -20,10 +20,10 @@ function jogos() {
     jogos.push({ "mandante": "Botafogo", "visitante": "Fluminense", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-08-08", "estadio": "Nilton Santos", "horario": "21:00" });
     //jogos.push({ "mandante": "Botafogo", "visitante": "Grêmio", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-07-29", "estadio": "Nilton Santos" });
     jogos.push({ "mandante": "Cruzeiro", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-07-26", "estadio": "Mineirão", "horario": "16:00" });
+    jogos.push({ "mandante": "Botafogo", "visitante": "Vitória", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-07-23", "estadio": "Nilton Santos", "horario": "19:30" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Santos", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-07-16", "estadio": "Nilton Santos", "horario": "19:30" });
     jogos.push({ "mandante": "Dynamo Moscow", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brothers Cup", "data": "2026-07-10", "estadio": "VTB Arena" });
     jogos.push({ "mandante": "CSKA Moscow", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brothers Cup", "data": "2026-07-04", "estadio": "VEB Arena" });
-    /*jogos.push({ "mandante": "Botafogo", "visitante": "Vitória", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-02-25", "estadio": "Nilton Santos" });*/ 
     
     jogos.sort(function (a, b) {
         return a.data < b.data ? -1 : a.data > b.data ? 1 : 0;
