@@ -6190,6 +6190,8 @@ function buildJogos() {
     jogos.push({ "mandante": "Goiânia", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 2, "campeonato": "Amistoso", "data": "1968-09-11", "estadio": "(Goiânia-GO)" });
     jogos.push({ "mandante": "Olaria", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1969-03-02", "estadio": "Eduardo Guinle" });
 
+    jogos = jogos.concat(ProximosJogos());
+
     jogos.sort(function (a, b) {
         return a.data < b.data ? -1 : a.data > b.data ? 1 : 0;
     });
