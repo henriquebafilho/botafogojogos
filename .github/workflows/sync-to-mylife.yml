@@ -5,6 +5,7 @@ on:
     branches: [master]
     paths:
       - 'src/TodosOsJogos/BotafogoJogos.js'
+      - 'src/TodosOsJogos/ProximosJogos.js'
 
 jobs:
   sync:

@@ -20,39 +20,59 @@ const MYLIFE_ROOT = process.argv[2]
     : path.join(__dirname, '../../myLife');
 
 const BOTAFOGO_JOGOS = path.join(__dirname, '../src/TodosOsJogos/BotafogoJogos.js');
+const PROXIMOS_JOGOS = path.join(__dirname, '../src/TodosOsJogos/ProximosJogos.js');
 const MYLIFE_DB = path.join(MYLIFE_ROOT, 'database/jogos/index.jsx');
 
-// --- 1. Parse jogosquefui presente games ---
-const jogosContent = fs.readFileSync(BOTAFOGO_JOGOS, 'utf8');
+// Parses presente:true games with real scores from a jogos.push() file.
+// Skips games where golsMandante/golsVisitante are empty strings (future games).
+function parsePresenteGames(filePath) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const games = [];
+
+    for (const line of content.split('\n')) {
+        if (!line.includes('jogos.push(') || !line.includes('"presente": true')) continue;
+
+        const mMandante = line.match(/"mandante":\s*"([^"]+)"/);
+        const mVisitante = line.match(/"visitante":\s*"([^"]+)"/);
+        const mGolsM = line.match(/"golsMandante":\s*(\d+)/);
+        const mGolsV = line.match(/"golsVisitante":\s*(\d+)/);
+        const mCamp = line.match(/"campeonato":\s*"([^"]+)"/);
+        const mData = line.match(/"data":\s*"([^"]+)"/);
+        const mEstadio = line.match(/"estadio":\s*"([^"]+)"/);
+        const mHorario = line.match(/"horario":\s*"([^"]+)"/);
+        const mPenaltis = line.match(/"penaltis":\s*"([^"]+)"/);
+
+        if (!mMandante || !mVisitante || !mData) continue;
+        // Skip future games where scores haven't been set yet
+        if (!mGolsM || !mGolsV) continue;
+
+        const game = {
+            mandante: mMandante[1],
+            visitante: mVisitante[1],
+            golsMandante: parseInt(mGolsM[1]),
+            golsVisitante: parseInt(mGolsV[1]),
+            campeonato: mCamp[1],
+            data: mData[1],
+            estadio: mEstadio[1],
+        };
+        if (mHorario) game.horario = mHorario[1];
+        if (mPenaltis) game.penaltis = mPenaltis[1];
+
+        games.push(game);
+    }
+
+    return games;
+}
+
+// --- 1. Parse jogosquefui presente games from both files ---
 const jogosPresenteMap = new Map(); // key: "mandante|visitante|data"
 
-for (const line of jogosContent.split('\n')) {
-    if (!line.includes('jogos.push(') || !line.includes('"presente": true')) continue;
+for (const game of parsePresenteGames(BOTAFOGO_JOGOS)) {
+    const key = `${game.mandante}|${game.visitante}|${game.data}`;
+    jogosPresenteMap.set(key, game);
+}
 
-    const mMandante = line.match(/"mandante":\s*"([^"]+)"/);
-    const mVisitante = line.match(/"visitante":\s*"([^"]+)"/);
-    const mGolsM = line.match(/"golsMandante":\s*(\d+)/);
-    const mGolsV = line.match(/"golsVisitante":\s*(\d+)/);
-    const mCamp = line.match(/"campeonato":\s*"([^"]+)"/);
-    const mData = line.match(/"data":\s*"([^"]+)"/);
-    const mEstadio = line.match(/"estadio":\s*"([^"]+)"/);
-    const mHorario = line.match(/"horario":\s*"([^"]+)"/);
-    const mPenaltis = line.match(/"penaltis":\s*"([^"]+)"/);
-
-    if (!mMandante || !mVisitante || !mData) continue;
-
-    const game = {
-        mandante: mMandante[1],
-        visitante: mVisitante[1],
-        golsMandante: parseInt(mGolsM[1]),
-        golsVisitante: parseInt(mGolsV[1]),
-        campeonato: mCamp[1],
-        data: mData[1],
-        estadio: mEstadio[1],
-    };
-    if (mHorario) game.horario = mHorario[1];
-    if (mPenaltis) game.penaltis = mPenaltis[1];
-
+for (const game of parsePresenteGames(PROXIMOS_JOGOS)) {
     const key = `${game.mandante}|${game.visitante}|${game.data}`;
     jogosPresenteMap.set(key, game);
 }
