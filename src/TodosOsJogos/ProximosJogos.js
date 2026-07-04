@@ -23,7 +23,7 @@ function jogos() {
     jogos.push({ "mandante": "Botafogo", "visitante": "Vitória", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-07-23", "estadio": "Nilton Santos", "horario": "19:30" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Santos", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-07-16", "estadio": "Nilton Santos", "horario": "19:30" });
     jogos.push({ "mandante": "Dynamo Moscow", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brothers Cup", "data": "2026-07-10", "estadio": "VTB Arena" });
-    jogos.push({ "mandante": "CSKA Moscow", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brothers Cup", "data": "2026-07-04", "estadio": "VEB Arena" });
+    jogos.push({ "mandante": "CSKA Moscow", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 2, "campeonato": "Brothers Cup", "data": "2026-07-04", "estadio": "VEB Arena", "presente": true });
     
     jogos.sort(function (a, b) {
         return a.data < b.data ? -1 : a.data > b.data ? 1 : 0;
