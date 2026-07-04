@@ -1,0 +1,43 @@
+name: Sync attended games to myLife
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/TodosOsJogos/BotafogoJogos.js'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout jogosquefui
+        uses: actions/checkout@v4
+
+      - name: Checkout myLife
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/myLife
+          token: ${{ secrets.MYLIFE_PAT }}
+          path: myLife
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run sync script
+        run: node scripts/sync-to-mylife.js myLife
+
+      - name: Commit and push to myLife
+        working-directory: myLife
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add database/jogos/index.jsx
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: sync attended Botafogo games from jogosquefui"
+            git push
+          fi
