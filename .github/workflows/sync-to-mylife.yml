@@ -2,7 +2,7 @@ name: Sync attended games to myLife
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - 'src/TodosOsJogos/BotafogoJogos.js'
 
