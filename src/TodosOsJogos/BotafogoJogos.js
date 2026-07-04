@@ -1,3 +1,4 @@
+import ProximosJogos from "./ProximosJogos";
 
 let jogosCache = null;
 
