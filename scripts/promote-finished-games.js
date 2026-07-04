@@ -64,12 +64,12 @@ if (toInsert.length === 0) {
     process.exit(0);
 }
 
-// Insert before jogos.sort(...) in BotafogoJogos.js
+// Insert before the first jogos.push( in BotafogoJogos.js (top of the list)
 const insertBlock = toInsert.join(lineEnding) + lineEnding;
-const newBotafogo = botafogoRaw.replace(/^(\s+jogos\.sort\()/m, insertBlock + '$1');
+const newBotafogo = botafogoRaw.replace(/^(\s+jogos\.push\()/m, insertBlock + '$1');
 
 if (newBotafogo === botafogoRaw) {
-    console.error('ERROR: Could not find jogos.sort() in BotafogoJogos.js — no changes written.');
+    console.error('ERROR: Could not find jogos.push() in BotafogoJogos.js — no changes written.');
     process.exit(1);
 }
 
