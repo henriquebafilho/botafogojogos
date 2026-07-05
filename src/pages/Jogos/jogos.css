@@ -1,0 +1,7 @@
+/* Leaflet dark theme popup fix */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: #161b22;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+}

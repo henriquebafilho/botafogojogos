@@ -5026,7 +5026,7 @@ function buildJogos() {
     jogos.push({ "mandante": "Combinado de Caracas", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 11, "campeonato": "Amistoso", "data": "1950-04-30", "estadio": "(Caracas - Venezuela)" });
     jogos.push({ "mandante": "Seleção de Niterói", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 11, "campeonato": "Amistoso", "data": "1965-12-01", "estadio": "Caio Martins" });
     jogos.push({ "mandante": "Combinado Sithoc/Jong Holland", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1950-05-05", "estadio": "(Willemstad - Curaçau)" });
-    jogos.push({ "mandante": "Curaçau", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1950-05-07", "estadio": "(Willemstad - Curaçau)" });
+    jogos.push({ "mandante": "Curaçao", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1950-05-07", "estadio": "(Willemstad - Curaçao)" });
     jogos.push({ "mandante": "Aruba", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1950-05-10", "estadio": "(Oranjestad - Aruba)" });
     jogos.push({ "mandante": "Centro Gallego", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1950-05-14", "estadio": "Gran Stadium Cerveza Tropical" });
     jogos.push({ "mandante": "Iberia", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1950-05-17", "estadio": "Gran Stadium Cerveza Tropical" });
@@ -5035,7 +5035,7 @@ function buildJogos() {
     jogos.push({ "mandante": "México", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1950-06-04", "estadio": "(Cidade do México - México)" });
     jogos.push({ "mandante": "Combinado Guadalajara/Oro", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1950-06-08", "estadio": "(Guadalajara - México)" });
     jogos.push({ "mandante": "México", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1950-06-14", "estadio": "(Cidade do México - México)" });
-    jogos.push({ "mandante": "Curaçau", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1950-06-24", "estadio": "(Willemstad - Curaçau)" });
+    jogos.push({ "mandante": "Curaçao", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1950-06-24", "estadio": "(Willemstad - Curaçao)" });
     jogos.push({ "mandante": "Colo-Colo", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 1, "campeonato": "Torneio Internacional de Santiago", "data": "1951-02-18", "estadio": "Nacional de Chile" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Nacional-URU", "golsMandante": 1, "golsVisitante": 3, "campeonato": "Torneio Internacional de Santiago", "data": "1951-02-21", "estadio": "Nacional de Chile" });
     jogos.push({ "mandante": "Santiago Morning", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 3, "campeonato": "Torneio Internacional de Santiago", "data": "1951-02-25", "estadio": "Nacional de Chile" });
@@ -5054,7 +5054,7 @@ function buildJogos() {
     jogos.push({ "mandante": "La Salle", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 6, "campeonato": "Pequena Taça do Mundo", "data": "1952-07-26", "estadio": "Universitário de Caracas" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Real Madrid", "golsMandante": 0, "golsVisitante": 0, "campeonato": "Pequena Taça do Mundo", "data": "1952-07-29", "estadio": "Universitário de Caracas" });
     jogos.push({ "mandante": "Millonarios", "visitante": "Botafogo", "golsMandante": 4, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1952-08-03", "estadio": "(Bogotá - Colômbia)" });
-    jogos.push({ "mandante": "Curaçau", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1952-08-08", "estadio": "(Willemstad - Curaçau)" });
+    jogos.push({ "mandante": "Curaçao", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1952-08-08", "estadio": "(Willemstad - Curaçao)" });
     jogos.push({ "mandante": "Aruba", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1952-08-09", "estadio": "(Oranjestad - Aruba)" });
     jogos.push({ "mandante": "Peñarol", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Copa Montevidéu", "data": "1953-01-23", "estadio": "Centenario-URU" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Dínamo Zagreb", "golsMandante": 3, "golsVisitante": 2, "campeonato": "Copa Montevidéu", "data": "1953-01-25", "estadio": "Centenario-URU" });
@@ -5114,8 +5114,8 @@ function buildJogos() {
     jogos.push({ "mandante": "Saprissa", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 2, "campeonato": "Torneio Quadrangular da Costa Rica", "data": "1958-01-05", "estadio": "Estádio Nacional da Costa Rica" });
     jogos.push({ "mandante": "Atlético Nacional", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 2, "campeonato": "Amistoso", "data": "1958-01-12", "estadio": "Atanasio Girardot" });
     jogos.push({ "mandante": "Deportivo Cali", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 0, "campeonato": "Amistoso", "data": "1958-01-15", "estadio": "(Cali - Colômbia)" });
-    jogos.push({ "mandante": "Curaçau", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1958-01-19", "estadio": "(Willemstad - Curaçau)" });
-    jogos.push({ "mandante": "Curaçau", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1958-01-21", "estadio": "(Willemstad - Curaçau)" });
+    jogos.push({ "mandante": "Curaçao", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1958-01-19", "estadio": "(Willemstad - Curaçao)" });
+    jogos.push({ "mandante": "Curaçao", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1958-01-21", "estadio": "(Willemstad - Curaçao)" });
     jogos.push({ "mandante": "FAS", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1958-01-26", "estadio": "(San Salvador - El Salvador)" });
     jogos.push({ "mandante": "Atlético Marte", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1958-01-30", "estadio": "(San Salvador - El Salvador)" });
     jogos.push({ "mandante": "Chivas Guadalajara", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 0, "campeonato": "Torneio Pentagonal do México", "data": "1958-02-06", "estadio": "Olímpico Universitario" });

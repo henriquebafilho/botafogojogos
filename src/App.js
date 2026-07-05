@@ -1,28 +1,14 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Footer from './components/Footer';
-import Perfil from './pages/Perfil';
-import VoltarAoTopo from './components/VoltarAoTopo';
-import ViewAno from './pages/viewScreens/ViewAno';
-import Anos from './pages/Anos';
-import Times from './Times';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme';
+import Jogos from './pages/Jogos';
 
 function App() {
-  const meuTime = "Botafogo";
-  document.body.style = `background: ${Times(meuTime).backgroundColor}; color: ${Times(meuTime).letterColor}`;
-
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route exact path='/botafogojogos' element={<Perfil meuTime={meuTime} />} />
-          <Route exact path='/botafogojogos/anos/' element={<Anos meuTime={meuTime} />} />
-          <Route exact path='/botafogojogos/anos/:ano' element={<ViewAno />} />
-        </Routes>
-      </Router>
-      <VoltarAoTopo />
-      <Footer />
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Jogos />
+    </ThemeProvider>
   );
 }
 
