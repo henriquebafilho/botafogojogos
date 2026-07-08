@@ -6178,7 +6178,7 @@ function buildJogos() {
     jogos.push({ "mandante": "Seleção de Uruguaiana", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1967-04-04", "estadio": "(Uruguaiana-RS)" });
     jogos.push({ "mandante": "Democrata GV", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1967-06-11", "estadio": "Mamudão" });
     jogos.push({ "mandante": "América de Teófilo Otoni", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1967-06-13", "estadio": "Nassri Mattar" });
-    jogos.push({ "mandante": "Combinado do Rio de Janeiro", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1967-06-22", "estadio": "(Rio de Janeiro-RJ(" });
+    jogos.push({ "mandante": "Combinado do Rio de Janeiro", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1967-06-22", "estadio": "(Rio de Janeiro-RJ)" });
     jogos.push({ "mandante": "Democrata SL", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1967-06-25", "estadio": "Duarte de Paiva" });
     jogos.push({ "mandante": "América-RJ", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1967-07-02", "estadio": "Mané Garrincha" });
     jogos.push({ "mandante": "Luve", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1967-09-17", "estadio": "(Viçosa)" });
