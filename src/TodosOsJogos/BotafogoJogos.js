@@ -5175,7 +5175,7 @@ function buildJogos() {
     jogos.push({ "mandante": "Valencia", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 2, "campeonato": "Troféu Naranja", "data": "1961-06-24", "estadio": "Mestalla" });
     jogos.push({ "mandante": "Barcelona", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 2, "campeonato": "Troféu Naranja", "data": "1961-06-27", "estadio": "Mestalla" });
     jogos.push({ "mandante": "Colo-Colo", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 0, "campeonato": "Amistoso", "data": "1961-10-31", "estadio": "Nacional de Chile" });
-    jogos.push({ "mandante": "Botafogo", "visitante": "Independiente Rivadavia", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1961-11-04", "estadio": "(Mendoza - Argentina)" });
+    jogos.push({ "mandante": "Independiente Rivadavia", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1961-11-04", "estadio": "(Mendoza - Argentina)" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Estrela Vermelha", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Torneio Internacional de Santiago", "data": "1962-01-06", "estadio": "Nacional de Chile" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Ferencváros", "golsMandante": 4, "golsVisitante": 1, "campeonato": "Torneio Internacional de Santiago", "data": "1962-01-10", "estadio": "Nacional de Chile" });
     jogos.push({ "mandante": "Colo-Colo", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 3, "campeonato": "Torneio Internacional de Santiago", "data": "1962-01-13", "estadio": "Nacional de Chile" });
@@ -5567,7 +5567,7 @@ function buildJogos() {
     jogos.push({ "mandante": "Botafogo", "visitante": "Guarani", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1960-11-15", "estadio": "Vila Capanema" });
     jogos.push({ "mandante": "América-MG", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1933-04-30", "estadio": "Avenida Araguaya" });
     jogos.push({ "mandante": "América-MG", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1936-11-17", "estadio": "Otacílio Negrão de Lima" });
-    jogos.push({ "mandante": "Botafogo", "visitante": "América-MG", "golsMandante": 6, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1937-09-18", "estadio": "Figueira de Mello" });
+    jogos.push({ "mandante": "Botafogo", "visitante": "América-MG", "golsMandante": 6, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1937-09-18", "estadio": "Figueira de Melo" });
     jogos.push({ "mandante": "América-MG", "visitante": "Botafogo", "golsMandante": 4, "golsVisitante": 8, "campeonato": "Amistoso", "data": "1941-12-07", "estadio": "Otacílio Negrão de Lima" });
     jogos.push({ "mandante": "América-MG", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 5, "campeonato": "Amistoso", "data": "1943-01-31", "estadio": "Otacílio Negrão de Lima" });
     jogos.push({ "mandante": "América-MG", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 2, "campeonato": "Amistoso", "data": "1947-07-06", "estadio": "Lourdes" });
