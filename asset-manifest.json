@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/botafogojogos/static/css/main.7325541a.css",
-    "main.js": "/botafogojogos/static/js/main.c9208f52.js",
+    "main.js": "/botafogojogos/static/js/main.c35cd36b.js",
     "static/media/rs.svg": "/botafogojogos/static/media/rs.099fd9d4031b066a2362.svg",
     "static/media/sh-ac.svg": "/botafogojogos/static/media/sh-ac.12e47249c910761e397d.svg",
     "static/media/bo.svg": "/botafogojogos/static/media/bo.b0f50bc8035200c269f1.svg",
@@ -114,6 +114,7 @@
     "static/media/hm.svg": "/botafogojogos/static/media/hm.fe75e73aa43e2b17f7c5.svg",
     "static/media/ba.svg": "/botafogojogos/static/media/ba.2d7f430f443e46b91acd.svg",
     "static/media/ve.svg": "/botafogojogos/static/media/ve.8654417d0313322c0ee9.svg",
+    "index.html": "/botafogojogos/index.html",
     "static/media/tf.svg": "/botafogojogos/static/media/tf.a1e1b04e6e2a99335098.svg",
     "static/media/sk.svg": "/botafogojogos/static/media/sk.2055cb509c045ec96ffb.svg",
     "static/media/et.svg": "/botafogojogos/static/media/et.d27d9d1ac47ed9291a62.svg",
@@ -126,7 +127,6 @@
     "static/media/kr.svg": "/botafogojogos/static/media/kr.977537ff603f52b41d25.svg",
     "static/media/km.svg": "/botafogojogos/static/media/km.ff5583b3507f34fe7751.svg",
     "static/media/na.svg": "/botafogojogos/static/media/na.29e28347f7830f429fd2.svg",
-    "index.html": "/botafogojogos/index.html",
     "static/media/st.svg": "/botafogojogos/static/media/st.b1de9e523e773c7d9318.svg",
     "static/media/sg.svg": "/botafogojogos/static/media/sg.8b629e7bf137abf1643b.svg",
     "static/media/sb.svg": "/botafogojogos/static/media/sb.22224fa1c1bf800c3bfb.svg",
@@ -275,10 +275,10 @@
     "static/media/pe.svg": "/botafogojogos/static/media/pe.d64e9732fcaa8f765994.svg",
     "static/media/id.svg": "/botafogojogos/static/media/id.f624e2c8444a7794b357.svg",
     "main.7325541a.css.map": "/botafogojogos/static/css/main.7325541a.css.map",
-    "main.c9208f52.js.map": "/botafogojogos/static/js/main.c9208f52.js.map"
+    "main.c35cd36b.js.map": "/botafogojogos/static/js/main.c35cd36b.js.map"
   },
   "entrypoints": [
     "static/css/main.7325541a.css",
-    "static/js/main.c9208f52.js"
+    "static/js/main.c35cd36b.js"
   ]
 }
