@@ -6174,7 +6174,7 @@ function buildJogos() {
     jogos.push({ "mandante": "Bahia", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1971-03-31", "estadio": "Fonte Nova" });
     jogos.push({ "mandante": "Combinado Moto Club/Sampaio Correa", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1971-10-14", "estadio": "(São Luís-MA)" });
     jogos.push({ "mandante": "Bangu", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 2, "campeonato": "Troféu Arthur Costa e Silva", "data": "1967-03-14", "estadio": "Mané Garrincha" });
-    jogos.push({ "mandante": "Guarany de Bagé", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1967-04-02", "estadio": "Estrela D'Alva" });
+    jogos.push({ "mandante": "Guarany de Bagé", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1967-04-02", "estadio": "Estrela d'Alva" });
     jogos.push({ "mandante": "Seleção de Uruguaiana", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1967-04-04", "estadio": "(Uruguaiana-RS)" });
     jogos.push({ "mandante": "Democrata GV", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1967-06-11", "estadio": "Mamudão" });
     jogos.push({ "mandante": "América de Teófilo Otoni", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 3, "campeonato": "Amistoso", "data": "1967-06-13", "estadio": "Nassri Mattar" });
