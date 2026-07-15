@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
@@ -16,6 +17,7 @@ import 'flag-icons/css/flag-icons.min.css';
 import common from '../common';
 import estadiosLocais from '../estadiosLocais';
 import coordenadas from '../estadiosCoordenadas';
+import { slugify, findBySlug } from '../slug';
 import ViewEstadio from './viewScreens/ViewEstadio';
 
 // Fix leaflet default marker icons with bundlers
@@ -144,17 +146,21 @@ function MapaEstadios({ estadios, onSelect }) {
     );
 }
 
-export default function Estadios({ meuTime, selectedEstadio, onSelectAdversario }) {
-    const [search, setSearch] = useState('');
-    const [filtro, setFiltro] = useState('todos');
-    const [vista, setVista] = useState('grid');
-    const [estadioAtual, setEstadioAtual] = useState(null);
+const FILTROS_VALIDOS = ['brasil', 'internacional'];
 
-    useEffect(() => {
-        if (selectedEstadio && todosEstadios.includes(selectedEstadio)) {
-            setEstadioAtual(selectedEstadio);
-        }
-    }, [selectedEstadio]);
+export default function Estadios({ meuTime, onSelectAdversario }) {
+    const { param } = useParams();
+    const navigate = useNavigate();
+    const [search, setSearch] = useState('');
+    const [vista, setVista] = useState('grid');
+
+    const filtro = FILTROS_VALIDOS.includes(param) ? param : 'todos';
+    const estadioAtual = (param && !FILTROS_VALIDOS.includes(param))
+        ? findBySlug(todosEstadios, param)
+        : null;
+
+    const irParaFiltro = (v) => navigate(v === 'todos' ? '/estadios' : `/estadios/${v}`);
+    const irParaEstadio = (estadio) => navigate(`/estadios/${slugify(estadio)}`);
 
     const filtered = useMemo(() => {
         let list = todosEstadios;
@@ -203,7 +209,7 @@ export default function Estadios({ meuTime, selectedEstadio, onSelectAdversario 
                 meuTime={meuTime}
                 jogosEstadio={jogosEstadio}
                 estadio={estadioAtual}
-                onBack={() => setEstadioAtual(null)}
+                onBack={() => navigate('/estadios')}
                 onSelectAdversario={onSelectAdversario}
             />
         );
@@ -211,7 +217,7 @@ export default function Estadios({ meuTime, selectedEstadio, onSelectAdversario 
 
     const grid = (list) => (
         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 2 }}>
-            {list.map(e => <EstadioCard key={e} estadio={e} onClick={setEstadioAtual} />)}
+            {list.map(e => <EstadioCard key={e} estadio={e} onClick={irParaEstadio} />)}
         </Box>
     );
 
@@ -256,13 +262,13 @@ export default function Estadios({ meuTime, selectedEstadio, onSelectAdversario 
             </Box>
 
             {vista === 'mapa' ? (
-                <MapaEstadios estadios={filtered} onSelect={setEstadioAtual} />
+                <MapaEstadios estadios={filtered} onSelect={irParaEstadio} />
             ) : (
                 <>
                     <ToggleButtonGroup
                         value={filtro}
                         exclusive
-                        onChange={(_, v) => { if (v) setFiltro(v); }}
+                        onChange={(_, v) => { if (v) irParaFiltro(v); }}
                         size="small"
                         sx={{ mb: 3 }}
                     >

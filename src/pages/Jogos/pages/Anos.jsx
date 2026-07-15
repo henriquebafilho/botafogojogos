@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
@@ -10,8 +11,11 @@ const jogos = common.jogos;
 const anosDisponiveis = [...new Set(jogos.map(j => j.data.split('-')[0]))].sort().reverse();
 
 export default function Anos({ meuTime, onSelectAdversario, onSelectEstadio }) {
+    const { ano } = useParams();
+    const navigate = useNavigate();
     const [search, setSearch] = useState('');
-    const [anoAtual, setAnoAtual] = useState(null);
+
+    const anoAtual = ano && anosDisponiveis.includes(ano) ? ano : null;
 
     const filtered = anosDisponiveis.filter(a => a.includes(search.trim()));
 
@@ -22,7 +26,7 @@ export default function Anos({ meuTime, onSelectAdversario, onSelectEstadio }) {
                 meuTime={meuTime}
                 jogosAno={jogosAno}
                 ano={anoAtual}
-                onBack={() => setAnoAtual(null)}
+                onBack={() => navigate('/anos')}
                 onSelectAdversario={onSelectAdversario}
                 onSelectEstadio={onSelectEstadio}
             />
@@ -59,7 +63,7 @@ export default function Anos({ meuTime, onSelectAdversario, onSelectEstadio }) {
                     return (
                         <Box
                             key={ano}
-                            onClick={() => setAnoAtual(ano)}
+                            onClick={() => navigate(`/anos/${ano}`)}
                             sx={{
                                 cursor: 'pointer',
                                 backgroundColor: '#161b22',

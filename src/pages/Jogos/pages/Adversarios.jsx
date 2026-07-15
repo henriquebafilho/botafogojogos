@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
@@ -10,6 +11,7 @@ import Times from '../Times';
 import common from '../common';
 import paises from '../paises';
 import estados from '../estados';
+import { slugify, findBySlug } from '../slug';
 import ViewAdversario from './viewScreens/ViewAdversario';
 
 const normalize = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
@@ -79,21 +81,22 @@ function AdversarioCard({ teamName, meuTime, onSelect }) {
     );
 }
 
-export default function Adversarios({ meuTime, selectedAdversario, onSelectEstadio }) {
+const FILTROS_VALIDOS = ['brasileiros', 'internacionais', 'selecoes'];
+
+export default function Adversarios({ meuTime, onSelectEstadio }) {
+    const { param } = useParams();
+    const navigate = useNavigate();
     const [search, setSearch] = useState('');
-    const [filtro, setFiltro] = useState('todos');
-    const [adversarioAtual, setAdversarioAtual] = useState(null);
 
     const todosAdversarios = useMemo(() => buildAdversarios(meuTime), [meuTime]);
 
-    useEffect(() => {
-        if (selectedAdversario) {
-            const nomeAtual = Times(selectedAdversario).nomeAtual;
-            if (todosAdversarios.includes(nomeAtual)) {
-                setAdversarioAtual(nomeAtual);
-            }
-        }
-    }, [selectedAdversario, todosAdversarios]);
+    const filtro = FILTROS_VALIDOS.includes(param) ? param : 'todos';
+    const adversarioAtual = (param && !FILTROS_VALIDOS.includes(param))
+        ? findBySlug(todosAdversarios, param)
+        : null;
+
+    const irParaFiltro = (v) => navigate(v === 'todos' ? '/adversarios' : `/adversarios/${v}`);
+    const irParaAdversario = (nome) => navigate(`/adversarios/${slugify(Times(nome).nomeAtual)}`);
 
     const filtered = useMemo(() => {
         let list = todosAdversarios;
@@ -152,7 +155,7 @@ export default function Adversarios({ meuTime, selectedAdversario, onSelectEstad
             <ViewAdversario
                 meuTime={meuTime}
                 adversario={adversarioAtual}
-                onBack={() => setAdversarioAtual(null)}
+                onBack={() => navigate('/adversarios')}
                 onSelectEstadio={onSelectEstadio}
             />
         );
@@ -179,7 +182,7 @@ export default function Adversarios({ meuTime, selectedAdversario, onSelectEstad
             <ToggleButtonGroup
                 value={filtro}
                 exclusive
-                onChange={(_, v) => { if (v) setFiltro(v); }}
+                onChange={(_, v) => { if (v) irParaFiltro(v); }}
                 size="small"
                 sx={{ mb: 3 }}
             >
@@ -207,7 +210,7 @@ export default function Adversarios({ meuTime, selectedAdversario, onSelectEstad
                         </Box>
                         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 2 }}>
                             {times.map(name => (
-                                <AdversarioCard key={name} teamName={name} meuTime={meuTime} onSelect={setAdversarioAtual} />
+                                <AdversarioCard key={name} teamName={name} meuTime={meuTime} onSelect={irParaAdversario} />
                             ))}
                         </Box>
                     </Box>
@@ -232,7 +235,7 @@ export default function Adversarios({ meuTime, selectedAdversario, onSelectEstad
                         </Box>
                         <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 2 }}>
                             {times.map(name => (
-                                <AdversarioCard key={name} teamName={name} meuTime={meuTime} onSelect={setAdversarioAtual} />
+                                <AdversarioCard key={name} teamName={name} meuTime={meuTime} onSelect={irParaAdversario} />
                             ))}
                         </Box>
                     </Box>
@@ -240,7 +243,7 @@ export default function Adversarios({ meuTime, selectedAdversario, onSelectEstad
             ) : (
                 <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 2 }}>
                     {filtered.map(teamName => (
-                        <AdversarioCard key={teamName} teamName={teamName} meuTime={meuTime} onSelect={setAdversarioAtual} />
+                        <AdversarioCard key={teamName} teamName={teamName} meuTime={meuTime} onSelect={irParaAdversario} />
                     ))}
                 </Box>
             )}

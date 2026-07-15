@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './jogos.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -17,6 +18,7 @@ import ProximosJogos from './pages/ProximosJogos';
 import Estatisticas from './components/Estatisticas';
 import Times from './Times';
 import common from './common';
+import { slugify } from './slug';
 
 const meuTime = 'Botafogo';
 const jogos = [...common.jogos].sort((a, b) => b.data.localeCompare(a.data));
@@ -100,26 +102,77 @@ function JogosList({ onSelectEstadio, onSelectAdversario }) {
     );
 }
 
+const SUBTAB_PATHS = { botafogo: '/', proximos: '/proximos-jogos', nestedia: '/neste-dia' };
+const TAB_PATHS = ['/', '/anos', '/estadios', '/adversarios'];
+
+function JogosTab({ subTab, onSelectEstadio, onSelectAdversario }) {
+    const navigate = useNavigate();
+    const goToSubTab = (v) => { navigate(SUBTAB_PATHS[v]); window.scrollTo({ top: 0, behavior: 'auto' }); };
+
+    return (
+        <Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+                <ToggleButtonGroup
+                    value={subTab === 'nestedia' ? 'botafogo' : subTab}
+                    exclusive
+                    onChange={(_, v) => { if (v) goToSubTab(v); }}
+                    size="small"
+                >
+                    <ToggleButton value="botafogo">Botafogo</ToggleButton>
+                    <ToggleButton value="proximos">Próximos Jogos</ToggleButton>
+                </ToggleButtonGroup>
+
+                <Button
+                    size="small"
+                    startIcon={<CakeIcon />}
+                    onClick={() => goToSubTab(subTab === 'nestedia' ? 'botafogo' : 'nestedia')}
+                    variant={subTab === 'nestedia' ? 'contained' : 'outlined'}
+                    sx={{
+                        color: subTab === 'nestedia' ? '#0d1117' : nesteDiaLista.length > 0 ? '#e3b341' : '#8b949e',
+                        borderColor: nesteDiaLista.length > 0 ? '#e3b341' : '#30363d',
+                        backgroundColor: subTab === 'nestedia' ? '#e3b341' : 'transparent',
+                        '&:hover': {
+                            borderColor: '#e3b341',
+                            backgroundColor: subTab === 'nestedia' ? '#c9a030' : 'rgba(227,179,65,0.08)',
+                        },
+                    }}
+                >
+                    Neste dia{nesteDiaLista.length > 0 ? ` (${nesteDiaLista.length})` : ''}
+                </Button>
+            </Box>
+
+            {subTab === 'nestedia' && (
+                <NesteDiaList onSelectEstadio={onSelectEstadio} onSelectAdversario={onSelectAdversario} />
+            )}
+            {subTab === 'botafogo' && (
+                <JogosList onSelectEstadio={onSelectEstadio} onSelectAdversario={onSelectAdversario} />
+            )}
+            {subTab === 'proximos' && (
+                <ProximosJogos onSelectEstadio={onSelectEstadio} onSelectAdversario={onSelectAdversario} />
+            )}
+        </Box>
+    );
+}
+
 export default function Jogos() {
-    const [tab, setTab] = useState(0);
-    const [subTab, setSubTab] = useState('botafogo');
-    const [selectedEstadio, setSelectedEstadio] = useState('');
-    const [selectedAdversario, setSelectedAdversario] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const selectEstadio = (estadio) => {
-        setTab(2);
-        setSelectedEstadio(estadio);
-        setSelectedAdversario('');
+        navigate(`/estadios/${slugify(estadio)}`);
         window.scrollTo({ top: 0, behavior: 'auto' });
     };
 
     const selectAdversario = (adversario) => {
         const nomeAtual = Times(adversario).nomeAtual;
-        setTab(3);
-        setSelectedAdversario(nomeAtual);
-        setSelectedEstadio('');
+        navigate(`/adversarios/${slugify(nomeAtual)}`);
         window.scrollTo({ top: 0, behavior: 'auto' });
     };
+
+    const tab = location.pathname.startsWith('/anos') ? 1
+        : location.pathname.startsWith('/estadios') ? 2
+        : location.pathname.startsWith('/adversarios') ? 3
+        : 0;
 
     return (
         <Box sx={{ mt: 2, px: { xs: 2, md: 4 }, pb: 6 }}>
@@ -142,7 +195,7 @@ export default function Jogos() {
             {/* Tabs */}
             <MuiTabs
                 value={tab}
-                onChange={(_, v) => { setTab(v); window.scrollTo({ top: 0, behavior: 'auto' }); }}
+                onChange={(_, v) => { navigate(TAB_PATHS[v]); window.scrollTo({ top: 0, behavior: 'auto' }); }}
                 sx={{ mb: 3, borderBottom: '1px solid #30363d' }}
             >
                 <MuiTab label="Jogos" />
@@ -151,62 +204,17 @@ export default function Jogos() {
                 <MuiTab label="Adversários" />
             </MuiTabs>
 
-            {/* Tab: Jogos */}
-            {tab === 0 && (
-                <Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
-                        <ToggleButtonGroup
-                            value={subTab}
-                            exclusive
-                            onChange={(_, v) => { if (v) { setSubTab(v); window.scrollTo({ top: 0, behavior: 'auto' }); } }}
-                            size="small"
-                        >
-                            <ToggleButton value="botafogo">Botafogo</ToggleButton>
-                            <ToggleButton value="proximos">Próximos Jogos</ToggleButton>
-                        </ToggleButtonGroup>
-
-                        <Button
-                            size="small"
-                            startIcon={<CakeIcon />}
-                            onClick={() => setSubTab(v => v === 'nestedia' ? 'botafogo' : 'nestedia')}
-                            variant={subTab === 'nestedia' ? 'contained' : 'outlined'}
-                            sx={{
-                                color: subTab === 'nestedia' ? '#0d1117' : nesteDiaLista.length > 0 ? '#e3b341' : '#8b949e',
-                                borderColor: nesteDiaLista.length > 0 ? '#e3b341' : '#30363d',
-                                backgroundColor: subTab === 'nestedia' ? '#e3b341' : 'transparent',
-                                '&:hover': {
-                                    borderColor: '#e3b341',
-                                    backgroundColor: subTab === 'nestedia' ? '#c9a030' : 'rgba(227,179,65,0.08)',
-                                },
-                            }}
-                        >
-                            Neste dia{nesteDiaLista.length > 0 ? ` (${nesteDiaLista.length})` : ''}
-                        </Button>
-                    </Box>
-
-                    {subTab === 'nestedia' && (
-                        <NesteDiaList onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />
-                    )}
-                    {subTab === 'botafogo' && (
-                        <JogosList onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />
-                    )}
-                    {subTab === 'proximos' && (
-                        <ProximosJogos onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />
-                    )}
-                </Box>
-            )}
-
-            {tab === 1 && (
-                <Anos meuTime={meuTime} onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />
-            )}
-
-            {tab === 2 && (
-                <Estadios meuTime={meuTime} meusJogos={jogos} selectedEstadio={selectedEstadio} onSelectAdversario={selectAdversario} />
-            )}
-
-            {tab === 3 && (
-                <Adversarios meuTime={meuTime} meusJogos={jogos} selectedAdversario={selectedAdversario} onSelectEstadio={selectEstadio} />
-            )}
+            <Routes>
+                <Route path="/" element={<JogosTab subTab="botafogo" onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />} />
+                <Route path="/proximos-jogos" element={<JogosTab subTab="proximos" onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />} />
+                <Route path="/neste-dia" element={<JogosTab subTab="nestedia" onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />} />
+                <Route path="/anos" element={<Anos meuTime={meuTime} onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />} />
+                <Route path="/anos/:ano" element={<Anos meuTime={meuTime} onSelectEstadio={selectEstadio} onSelectAdversario={selectAdversario} />} />
+                <Route path="/estadios" element={<Estadios meuTime={meuTime} meusJogos={jogos} onSelectAdversario={selectAdversario} />} />
+                <Route path="/estadios/:param" element={<Estadios meuTime={meuTime} meusJogos={jogos} onSelectAdversario={selectAdversario} />} />
+                <Route path="/adversarios" element={<Adversarios meuTime={meuTime} meusJogos={jogos} onSelectEstadio={selectEstadio} />} />
+                <Route path="/adversarios/:param" element={<Adversarios meuTime={meuTime} meusJogos={jogos} onSelectEstadio={selectEstadio} />} />
+            </Routes>
 
         </Box>
     );
