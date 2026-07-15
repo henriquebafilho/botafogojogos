@@ -2,8 +2,6 @@ import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import IconButton from '@mui/material/IconButton';
@@ -18,6 +16,7 @@ import common from '../common';
 import estadiosLocais from '../estadiosLocais';
 import coordenadas from '../estadiosCoordenadas';
 import { slugify, findBySlug } from '../slug';
+import SearchBox from '../components/SearchBox';
 import ViewEstadio from './viewScreens/ViewEstadio';
 
 // Fix leaflet default marker icons with bundlers
@@ -231,21 +230,12 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
 
             {/* Search + view toggle */}
             <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                <Box sx={{
-                    display: 'flex', alignItems: 'center', gap: 1, flex: 1,
-                    px: 2, py: 1,
-                    backgroundColor: '#161b22',
-                    border: '1px solid #30363d',
-                    borderRadius: '8px',
-                }}>
-                    <SearchIcon sx={{ color: '#8b949e', fontSize: 20 }} />
-                    <InputBase
-                        placeholder="Buscar estádio..."
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        sx={{ flex: 1, color: 'text.primary', fontSize: '0.95rem' }}
-                    />
-                </Box>
+                <SearchBox
+                    placeholder="Buscar estádio..."
+                    value={search}
+                    onChange={setSearch}
+                    sx={{ flex: 1 }}
+                />
                 <Tooltip title={vista === 'grid' ? 'Ver mapa' : 'Ver grade'}>
                     <IconButton
                         onClick={() => setVista(v => v === 'grid' ? 'mapa' : 'grid')}

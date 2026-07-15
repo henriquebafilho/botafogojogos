@@ -2,8 +2,6 @@ import { useState, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import 'flag-icons/css/flag-icons.min.css';
@@ -12,6 +10,7 @@ import common from '../common';
 import paises from '../paises';
 import estados from '../estados';
 import { slugify, findBySlug } from '../slug';
+import SearchBox from '../components/SearchBox';
 import ViewAdversario from './viewScreens/ViewAdversario';
 
 const normalize = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
@@ -163,21 +162,12 @@ export default function Adversarios({ meuTime, onSelectEstadio }) {
 
     return (
         <Box>
-            <Box sx={{
-                display: 'flex', alignItems: 'center', gap: 1,
-                mb: 2, px: 2, py: 1,
-                backgroundColor: '#161b22',
-                border: '1px solid #30363d',
-                borderRadius: '8px',
-            }}>
-                <SearchIcon sx={{ color: '#8b949e', fontSize: 20 }} />
-                <InputBase
-                    placeholder="Buscar adversário..."
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                    sx={{ flex: 1, color: 'text.primary', fontSize: '0.95rem' }}
-                />
-            </Box>
+            <SearchBox
+                placeholder="Buscar adversário..."
+                value={search}
+                onChange={setSearch}
+                sx={{ mb: 2 }}
+            />
 
             <ToggleButtonGroup
                 value={filtro}
