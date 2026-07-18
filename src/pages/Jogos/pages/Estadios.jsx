@@ -6,7 +6,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import GridViewIcon from '@mui/icons-material/GridView';
+import ViewListIcon from '@mui/icons-material/ViewList';
 import MapIcon from '@mui/icons-material/Map';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
@@ -44,35 +44,30 @@ const todosEstadios = (() => {
     return arr;
 })();
 
-function EstadioCard({ estadio, onClick }) {
+function EstadioRow({ estadio, onClick }) {
     const total = common.getTotalEstadio(estadio, jogos);
     return (
         <Box
             onClick={() => onClick(estadio)}
             sx={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 1,
                 cursor: 'pointer',
+                px: 2,
+                py: 1.5,
+                mb: 1,
                 backgroundColor: '#161b22',
-                border: '1px solid #484f58',
+                border: '1px solid #30363d',
                 borderRadius: '8px',
-                overflow: 'hidden',
-                textAlign: 'center',
-                transition: 'border-color 0.15s, transform 0.15s',
-                '&:hover': { borderColor: '#8b949e', transform: 'translateY(-2px)' },
+                transition: 'border-color 0.15s, background-color 0.15s',
+                '&:hover': { borderColor: '#8b949e', backgroundColor: '#1c2128' },
             }}
         >
-            <img
-                src={process.env.PUBLIC_URL + '/estadios/' + estadio + '.png'}
-                alt={estadio}
-                loading="lazy"
-                style={{ display: 'block', width: '100%', aspectRatio: '1', objectFit: 'cover' }}
-                onError={(e) => { e.target.style.display = 'none'; }}
-            />
-            <Box sx={{ p: 1.5 }}>
-                <Typography variant="body2" sx={{ fontWeight: 600, lineHeight: 1.3 }}>{estadio}</Typography>
-                <Typography variant="caption" color="text.secondary">
-                    {total} {total === 1 ? 'jogo' : 'jogos'}
-                </Typography>
-            </Box>
+            <Typography variant="body1" sx={{ fontWeight: 600 }}>{estadio}</Typography>
+            <Typography variant="caption" color="text.secondary">
+                · {total} {total === 1 ? 'jogo' : 'jogos'}
+            </Typography>
         </Box>
     );
 }
@@ -151,7 +146,7 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
     const { param } = useParams();
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
-    const [vista, setVista] = useState('grid');
+    const [vista, setVista] = useState('lista');
 
     const filtro = FILTROS_VALIDOS.includes(param) ? param : 'todos';
     const estadioAtual = (param && !FILTROS_VALIDOS.includes(param))
@@ -198,7 +193,13 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
             if (!map[info.pais]) map[info.pais] = { codigo: info.codigo, estadios: [] };
             map[info.pais].estadios.push(nome);
         });
-        return Object.keys(map).sort().map(p => ({ pais: p, ...map[p] }));
+        return Object.keys(map)
+            .sort((a, b) => {
+                const totalA = map[a].estadios.reduce((s, e) => s + common.getTotalEstadio(e, jogos), 0);
+                const totalB = map[b].estadios.reduce((s, e) => s + common.getTotalEstadio(e, jogos), 0);
+                return totalB - totalA;
+            })
+            .map(p => ({ pais: p, ...map[p] }));
     }, [filtro, filtered]);
 
     if (estadioAtual) {
@@ -214,9 +215,9 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
         );
     }
 
-    const grid = (list) => (
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 2 }}>
-            {list.map(e => <EstadioCard key={e} estadio={e} onClick={irParaEstadio} />)}
+    const lista = (list) => (
+        <Box>
+            {list.map(e => <EstadioRow key={e} estadio={e} onClick={irParaEstadio} />)}
         </Box>
     );
 
@@ -236,9 +237,9 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
                     onChange={setSearch}
                     sx={{ flex: 1 }}
                 />
-                <Tooltip title={vista === 'grid' ? 'Ver mapa' : 'Ver grade'}>
+                <Tooltip title={vista === 'lista' ? 'Ver mapa' : 'Ver lista'}>
                     <IconButton
-                        onClick={() => setVista(v => v === 'grid' ? 'mapa' : 'grid')}
+                        onClick={() => setVista(v => v === 'lista' ? 'mapa' : 'lista')}
                         sx={{
                             border: '1px solid #30363d', borderRadius: '8px',
                             color: vista === 'mapa' ? '#58a6ff' : '#8b949e',
@@ -246,7 +247,7 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
                             '&:hover': { backgroundColor: 'rgba(88,166,255,0.08)' },
                         }}
                     >
-                        {vista === 'grid' ? <MapIcon /> : <GridViewIcon />}
+                        {vista === 'lista' ? <MapIcon /> : <ViewListIcon />}
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -275,18 +276,18 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
                         byEstado.map(({ estado, uf, estadios }) => (
                             <Box key={estado} sx={{ mb: 4 }}>
                                 <GroupHeader label={estado} uf={uf} count={estadios.length} />
-                                {grid(estadios)}
+                                {lista(estadios)}
                             </Box>
                         ))
                     ) : filtro === 'internacional' && byPais ? (
                         byPais.map(({ pais, codigo, estadios }) => (
                             <Box key={pais} sx={{ mb: 4 }}>
                                 <GroupHeader label={pais} flag={codigo} count={estadios.length} />
-                                {grid(estadios)}
+                                {lista(estadios)}
                             </Box>
                         ))
                     ) : (
-                        grid(filtered)
+                        lista(filtered)
                     )}
                 </>
             )}

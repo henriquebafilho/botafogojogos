@@ -9,7 +9,6 @@ export default function ViewEstadio({ meuTime, jogosEstadio, estadio, onBack, on
     useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [estadio]);
 
     const jogos = [...jogosEstadio].sort((a, b) => b.data.localeCompare(a.data));
-    const imagemEstadio = process.env.PUBLIC_URL + '/estadios/' + estadio + '.png';
 
     let currentYear = null;
 
@@ -20,15 +19,6 @@ export default function ViewEstadio({ meuTime, jogosEstadio, estadio, onBack, on
             </Button>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1.5, mb: 3 }}>
-                <img
-                    src={imagemEstadio}
-                    alt={estadio}
-                    width={120}
-                    height={120}
-                    loading="lazy"
-                    style={{ borderRadius: '8px', objectFit: 'cover' }}
-                    onError={(e) => { e.target.style.display = 'none'; }}
-                />
                 <Typography variant="h4">{estadio}</Typography>
             </Box>
 
