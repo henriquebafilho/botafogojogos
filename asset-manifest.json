@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/botafogojogos/static/css/main.7325541a.css",
-    "main.js": "/botafogojogos/static/js/main.baffedd2.js",
+    "main.js": "/botafogojogos/static/js/main.568b6b71.js",
     "static/media/rs.svg": "/botafogojogos/static/media/rs.099fd9d4031b066a2362.svg",
     "static/media/sh-ac.svg": "/botafogojogos/static/media/sh-ac.12e47249c910761e397d.svg",
     "static/media/bo.svg": "/botafogojogos/static/media/bo.b0f50bc8035200c269f1.svg",
@@ -275,10 +275,10 @@
     "static/media/pe.svg": "/botafogojogos/static/media/pe.d64e9732fcaa8f765994.svg",
     "static/media/id.svg": "/botafogojogos/static/media/id.f624e2c8444a7794b357.svg",
     "main.7325541a.css.map": "/botafogojogos/static/css/main.7325541a.css.map",
-    "main.baffedd2.js.map": "/botafogojogos/static/js/main.baffedd2.js.map"
+    "main.568b6b71.js.map": "/botafogojogos/static/js/main.568b6b71.js.map"
   },
   "entrypoints": [
     "static/css/main.7325541a.css",
-    "static/js/main.baffedd2.js"
+    "static/js/main.568b6b71.js"
   ]
 }
