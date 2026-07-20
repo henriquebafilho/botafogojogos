@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -85,6 +85,7 @@ const FILTROS_VALIDOS = ['brasileiros', 'internacionais', 'selecoes'];
 export default function Adversarios({ meuTime, onSelectEstadio }) {
     const { param } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const [search, setSearch] = useState('');
 
     const todosAdversarios = useMemo(() => buildAdversarios(meuTime), [meuTime]);
@@ -95,6 +96,7 @@ export default function Adversarios({ meuTime, onSelectEstadio }) {
         : null;
 
     const irParaFiltro = (v) => navigate(v === 'todos' ? '/adversarios' : `/adversarios/${v}`);
+    const voltar = () => (location.key === 'default' ? navigate('/adversarios') : navigate(-1));
     const irParaAdversario = (nome) => navigate(`/adversarios/${slugify(Times(nome).nomeAtual)}`);
 
     const filtered = useMemo(() => {
@@ -154,7 +156,7 @@ export default function Adversarios({ meuTime, onSelectEstadio }) {
             <ViewAdversario
                 meuTime={meuTime}
                 adversario={adversarioAtual}
-                onBack={() => navigate('/adversarios')}
+                onBack={voltar}
                 onSelectEstadio={onSelectEstadio}
             />
         );

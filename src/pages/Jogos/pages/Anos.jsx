@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import common from '../common';
@@ -12,9 +12,11 @@ const anosDisponiveis = [...new Set(jogos.map(j => j.data.split('-')[0]))].sort(
 export default function Anos({ meuTime, onSelectAdversario, onSelectEstadio }) {
     const { ano } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const [search, setSearch] = useState('');
 
     const anoAtual = ano && anosDisponiveis.includes(ano) ? ano : null;
+    const voltar = () => (location.key === 'default' ? navigate('/anos') : navigate(-1));
 
     const filtered = anosDisponiveis.filter(a => a.includes(search.trim()));
 
@@ -25,7 +27,7 @@ export default function Anos({ meuTime, onSelectAdversario, onSelectEstadio }) {
                 meuTime={meuTime}
                 jogosAno={jogosAno}
                 ano={anoAtual}
-                onBack={() => navigate('/anos')}
+                onBack={voltar}
                 onSelectAdversario={onSelectAdversario}
                 onSelectEstadio={onSelectEstadio}
             />

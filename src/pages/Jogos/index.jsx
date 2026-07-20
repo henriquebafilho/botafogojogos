@@ -11,6 +11,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import CakeIcon from '@mui/icons-material/Cake';
 import LinhaJogo from './components/LinhaJogo';
+import ScrollRestoration from './components/ScrollRestoration';
+import VoltarAoTopo from './components/VoltarAoTopo';
 import Adversarios from './pages/Adversarios';
 import Anos from './pages/Anos';
 import Estadios from './pages/Estadios';
@@ -107,7 +109,7 @@ const TAB_PATHS = ['/', '/anos', '/estadios', '/adversarios'];
 
 function JogosTab({ subTab, onSelectEstadio, onSelectAdversario }) {
     const navigate = useNavigate();
-    const goToSubTab = (v) => { navigate(SUBTAB_PATHS[v]); window.scrollTo({ top: 0, behavior: 'auto' }); };
+    const goToSubTab = (v) => navigate(SUBTAB_PATHS[v]);
 
     return (
         <Box>
@@ -160,13 +162,11 @@ export default function Jogos() {
 
     const selectEstadio = (estadio) => {
         navigate(`/estadios/${slugify(estadio)}`);
-        window.scrollTo({ top: 0, behavior: 'auto' });
     };
 
     const selectAdversario = (adversario) => {
         const nomeAtual = Times(adversario).nomeAtual;
         navigate(`/adversarios/${slugify(nomeAtual)}`);
-        window.scrollTo({ top: 0, behavior: 'auto' });
     };
 
     const tab = location.pathname.startsWith('/anos') ? 1
@@ -176,6 +176,8 @@ export default function Jogos() {
 
     return (
         <Box sx={{ mt: 2, px: { xs: 2, md: 4 }, pb: 6 }}>
+            <ScrollRestoration />
+            <VoltarAoTopo />
 
             {/* Header */}
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2, mb: 3 }}>
@@ -195,7 +197,7 @@ export default function Jogos() {
             {/* Tabs */}
             <MuiTabs
                 value={tab}
-                onChange={(_, v) => { navigate(TAB_PATHS[v]); window.scrollTo({ top: 0, behavior: 'auto' }); }}
+                onChange={(_, v) => navigate(TAB_PATHS[v])}
                 sx={{ mb: 3, borderBottom: '1px solid #30363d' }}
             >
                 <MuiTab label="Jogos" />

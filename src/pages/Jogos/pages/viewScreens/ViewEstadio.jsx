@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -6,8 +6,6 @@ import LinhaJogo from '../../components/LinhaJogo';
 import Estatisticas from '../../components/Estatisticas';
 
 export default function ViewEstadio({ meuTime, jogosEstadio, estadio, onBack, onSelectAdversario }) {
-    useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [estadio]);
-
     const jogos = [...jogosEstadio].sort((a, b) => b.data.localeCompare(a.data));
 
     let currentYear = null;

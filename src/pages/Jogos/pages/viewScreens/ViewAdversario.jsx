@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -8,8 +8,6 @@ import Times from '../../Times';
 import common from '../../common';
 
 export default function ViewAdversario({ meuTime, adversario, onBack, onSelectEstadio }) {
-    useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [adversario]);
-
     const meuTimeStyle = Times(meuTime);
     const adversarioStyle = Times(adversario);
 

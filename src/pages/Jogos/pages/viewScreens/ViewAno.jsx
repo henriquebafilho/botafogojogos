@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -6,8 +6,6 @@ import LinhaJogo from '../../components/LinhaJogo';
 import Estatisticas from '../../components/Estatisticas';
 
 export default function ViewAno({ meuTime, jogosAno, ano, onBack, onSelectAdversario, onSelectEstadio }) {
-    useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [ano]);
-
     const jogos = [...jogosAno].sort((a, b) => a.data.localeCompare(b.data));
     const imagemAno = process.env.PUBLIC_URL + '/anos/' + ano + '.png';
 
