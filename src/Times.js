@@ -2027,6 +2027,12 @@ function Times(time, data) {
                   backgroundColor = "black";
                   letterColor = "white";
                   break;
+            case "Internacional-BA":
+                  nomeAtual = time;
+                  escudo = time;
+                  backgroundColor = "#d30a11";
+                  letterColor = "black";
+                  break;
             case "Ipatinga":
                   nomeAtual = time;
                   escudo = time;
