@@ -1157,7 +1157,7 @@ function Times(time, data) {
                   backgroundColor = "#003a94";
                   letterColor = "white";
                   break;
-            case "Universidad Central":
+            case "UCV":
                   nomeAtual = time;
                   escudo = time;
                   backgroundColor = "#003a94";

@@ -5020,7 +5020,7 @@ function buildJogos() {
     jogos.push({ "mandante": "Botafogo", "visitante": "Southampton", "golsMandante": 3, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1948-05-20", "estadio": "São Januário" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Arsenal", "golsMandante": 2, "golsVisitante": 2, "campeonato": "Amistoso", "data": "1949-06-01", "estadio": "São Januário" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Malmo", "golsMandante": 7, "golsVisitante": 4, "campeonato": "Amistoso", "data": "1949-12-21", "estadio": "General Severiano" });
-    jogos.push({ "mandante": "Universidad Central", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 6, "campeonato": "Amistoso", "data": "1950-04-16", "estadio": "(Caracas - Venezuela)" });
+    jogos.push({ "mandante": "UCV", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 6, "campeonato": "Amistoso", "data": "1950-04-16", "estadio": "(Caracas - Venezuela)" });
     jogos.push({ "mandante": "Combinado Loyola/La Salle", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 7, "campeonato": "Amistoso", "data": "1950-04-19", "estadio": "(Caracas - Venezuela)" });
     jogos.push({ "mandante": "Deportivo Italia", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 7, "campeonato": "Amistoso", "data": "1950-04-23", "estadio": "(Caracas - Venezuela)" });
     jogos.push({ "mandante": "Combinado Loyola/La Salle", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 6, "campeonato": "Amistoso", "data": "1950-04-26", "estadio": "(Caracas - Venezuela)" });

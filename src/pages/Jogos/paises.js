@@ -278,7 +278,7 @@ const paises = {
     "Unión Española":                         { pais: "Chile",                   codigo: "cl" },
     "Universidad Autónoma":                   { pais: "México",                  codigo: "mx" },
     "Universidad Católica":                   { pais: "Chile",                   codigo: "cl" },
-    "Universidad Central":                    { pais: "Venezuela",               codigo: "ve" },
+    "UCV":                    { pais: "Venezuela",               codigo: "ve" },
     "Universidad de Chile":                   { pais: "Chile",                   codigo: "cl" },
     "Universidad Nacional-CO":                { pais: "Colômbia",                codigo: "co" },
     "Universitario":                          { pais: "Peru",                    codigo: "pe" },
