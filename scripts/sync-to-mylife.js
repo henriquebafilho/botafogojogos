@@ -19,7 +19,13 @@ const MYLIFE_ROOT = process.argv[2]
     ? path.resolve(process.argv[2])
     : path.join(__dirname, '../../myLife');
 
-const BOTAFOGO_JOGOS = path.join(__dirname, '../src/TodosOsJogos/BotafogoJogos.js');
+const BOTAFOGO_JOGOS_FILES = [
+    '../src/TodosOsJogos/BotafogoJogos2010a2026.js',
+    '../src/TodosOsJogos/BotafogoJogos1990a2009.js',
+    '../src/TodosOsJogos/BotafogoJogos1970a1989.js',
+    '../src/TodosOsJogos/BotafogoJogos1950a1969.js',
+    '../src/TodosOsJogos/BotafogoJogos1900a1949.js',
+].map(p => path.join(__dirname, p));
 const PROXIMOS_JOGOS = path.join(__dirname, '../src/TodosOsJogos/ProximosJogos.js');
 const MYLIFE_DB = path.join(MYLIFE_ROOT, 'database/jogos/index.jsx');
 
@@ -67,9 +73,11 @@ function parsePresenteGames(filePath) {
 // --- 1. Parse jogosquefui presente games from both files ---
 const jogosPresenteMap = new Map(); // key: "mandante|visitante|data"
 
-for (const game of parsePresenteGames(BOTAFOGO_JOGOS)) {
-    const key = `${game.mandante}|${game.visitante}|${game.data}`;
-    jogosPresenteMap.set(key, game);
+for (const filePath of BOTAFOGO_JOGOS_FILES) {
+    for (const game of parsePresenteGames(filePath)) {
+        const key = `${game.mandante}|${game.visitante}|${game.data}`;
+        jogosPresenteMap.set(key, game);
+    }
 }
 
 for (const game of parsePresenteGames(PROXIMOS_JOGOS)) {

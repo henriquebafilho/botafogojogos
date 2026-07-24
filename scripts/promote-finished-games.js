@@ -1,18 +1,35 @@
 #!/usr/bin/env node
-// Moves finished games (real integer scores) from ProximosJogos.js to BotafogoJogos.js.
+// Moves finished games (real integer scores) from ProximosJogos.js to the
+// most recent era file (BOTAFOGO_JOGOS below).
 // Skips games where golsMandante/golsVisitante are still empty strings (unplayed).
-// Inserts promoted lines before the first jogos.push() in BotafogoJogos.js.
+// Inserts promoted lines before the first jogos.push() in that file.
+//
+// BotafogoJogos.js itself is just an aggregator (imports every era file) — it is
+// never edited directly, so it can never be truncated by the GitHub mobile app.
+// The historical games live in BotafogoJogos<era>.js files instead, each capped
+// around ~1300 games so no single file gets anywhere near the size that caused
+// silent truncation before. When BOTAFOGO_JOGOS below approaches ~4000 lines,
+// split off a new era file and update this path plus BotafogoJogos.js.
 //
 // Usage: node scripts/promote-finished-games.js
 
 const fs = require('fs');
 const path = require('path');
 
-const BOTAFOGO_JOGOS = path.join(__dirname, '../src/TodosOsJogos/BotafogoJogos.js');
+const BOTAFOGO_JOGOS = path.join(__dirname, '../src/TodosOsJogos/BotafogoJogos2010a2026.js');
+const ARCHIVE_FILES = [
+    '../src/TodosOsJogos/BotafogoJogos1990a2009.js',
+    '../src/TodosOsJogos/BotafogoJogos1970a1989.js',
+    '../src/TodosOsJogos/BotafogoJogos1950a1969.js',
+    '../src/TodosOsJogos/BotafogoJogos1900a1949.js',
+].map(p => path.join(__dirname, p));
 const PROXIMOS_JOGOS = path.join(__dirname, '../src/TodosOsJogos/ProximosJogos.js');
 
 const proximosRaw = fs.readFileSync(PROXIMOS_JOGOS, 'utf8');
 const botafogoRaw = fs.readFileSync(BOTAFOGO_JOGOS, 'utf8');
+// Dedup check must look across every era file, not just the one we insert into,
+// so a game already recorded in an older era is never promoted twice.
+const allJogosRaw = botafogoRaw + ARCHIVE_FILES.map(f => fs.readFileSync(f, 'utf8')).join('\n');
 
 const proximosLines = proximosRaw.split(/\r?\n/);
 const botafogoLines = botafogoRaw.split(/\r?\n/);
@@ -46,8 +63,8 @@ for (const line of linesToPromote) {
     const mData = line.match(/"data":\s*"([^"]+)"/);
     if (!mMandante || !mVisitante || !mData) { toInsert.push(line); continue; }
     const alreadyExists =
-        botafogoRaw.includes(`"mandante": "${mMandante[1]}"`) &&
-        botafogoRaw.includes(`"data": "${mData[1]}"`);
+        allJogosRaw.includes(`"mandante": "${mMandante[1]}"`) &&
+        allJogosRaw.includes(`"data": "${mData[1]}"`);
     if (alreadyExists) {
         console.log(`  Skipping duplicate: ${mMandante[1]}|${mVisitante[1]}|${mData[1]}`);
         continue;

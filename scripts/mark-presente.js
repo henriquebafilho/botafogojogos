@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// One-time script: adds "presente": true to all games in BotafogoJogos.js
+// One-time script: adds "presente": true to all games in the BotafogoJogos era files
 // that match games attended (from myLife database).
 // Also adds "penaltis" field where applicable.
 // Run from the jogosquefui root: node scripts/mark-presente.js
@@ -8,7 +8,13 @@ const fs = require('fs');
 const path = require('path');
 
 const MYLIFE_DB = path.join(__dirname, '../../myLife/database/jogos/index.jsx');
-const BOTAFOGO_JOGOS = path.join(__dirname, '../src/TodosOsJogos/BotafogoJogos.js');
+const BOTAFOGO_JOGOS_FILES = [
+    '../src/TodosOsJogos/BotafogoJogos2010a2026.js',
+    '../src/TodosOsJogos/BotafogoJogos1990a2009.js',
+    '../src/TodosOsJogos/BotafogoJogos1970a1989.js',
+    '../src/TodosOsJogos/BotafogoJogos1950a1969.js',
+    '../src/TodosOsJogos/BotafogoJogos1900a1949.js',
+].map(p => path.join(__dirname, p));
 
 // --- Parse myLife database ---
 const myLifeContent = fs.readFileSync(MYLIFE_DB, 'utf8');
@@ -30,36 +36,45 @@ const myLifeMap = new Map(myLifeGames.map(g => [
 ]));
 console.log(`Parsed ${myLifeMap.size} attended games from myLife`);
 
-// --- Process BotafogoJogos.js ---
-const content = fs.readFileSync(BOTAFOGO_JOGOS, 'utf8');
-const lines = content.split('\n');
-
+// --- Process each BotafogoJogos era file ---
 let modified = 0;
 const foundKeys = new Set();
 
-const result = lines.map(line => {
-    if (!line.includes('jogos.push(')) return line;
+for (const filePath of BOTAFOGO_JOGOS_FILES) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split('\n');
+    let fileModified = 0;
 
-    const mMandante = line.match(/"mandante":\s*"([^"]+)"/);
-    const mVisitante = line.match(/"visitante":\s*"([^"]+)"/);
-    const mData = line.match(/"data":\s*"([^"]+)"/);
+    const result = lines.map(line => {
+        if (!line.includes('jogos.push(')) return line;
 
-    if (!mMandante || !mVisitante || !mData) return line;
+        const mMandante = line.match(/"mandante":\s*"([^"]+)"/);
+        const mVisitante = line.match(/"visitante":\s*"([^"]+)"/);
+        const mData = line.match(/"data":\s*"([^"]+)"/);
 
-    const key = `${mMandante[1]}|${mVisitante[1]}|${mData[1]}`;
+        if (!mMandante || !mVisitante || !mData) return line;
 
-    if (myLifeMap.has(key)) {
-        foundKeys.add(key);
-        const ml = myLifeMap.get(key);
-        let extras = ', "presente": true';
-        if (ml.penaltis) extras += `, "penaltis": "${ml.penaltis}"`;
-        // Insert before the closing });
-        const newLine = line.replace(/\s*\}\);(\s*)$/, (_, tail) => extras + ' });' + tail);
-        modified++;
-        return newLine;
+        const key = `${mMandante[1]}|${mVisitante[1]}|${mData[1]}`;
+
+        if (myLifeMap.has(key)) {
+            foundKeys.add(key);
+            const ml = myLifeMap.get(key);
+            let extras = ', "presente": true';
+            if (ml.penaltis) extras += `, "penaltis": "${ml.penaltis}"`;
+            // Insert before the closing });
+            const newLine = line.replace(/\s*\}\);(\s*)$/, (_, tail) => extras + ' });' + tail);
+            fileModified++;
+            return newLine;
+        }
+        return line;
+    });
+
+    if (fileModified > 0) {
+        fs.writeFileSync(filePath, result.join('\n'));
+        console.log(`  ${path.basename(filePath)}: marked ${fileModified} game(s)`);
     }
-    return line;
-});
+    modified += fileModified;
+}
 
 // --- Report ---
 console.log(`\nMarked ${modified} games with presente: true`);
