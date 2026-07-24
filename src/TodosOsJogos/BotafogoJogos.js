@@ -5,6 +5,7 @@ let jogosCache = null;
 function buildJogos() {
     let jogos = [];
     
+    jogos.push({ "mandante": "Botafogo", "visitante": "Vitória", "golsMandante": 0, "golsVisitante": 0, "campeonato": "Brasileirão 2026", "data": "2026-07-23", "estadio": "Nilton Santos", "horario": "19:30", "presente": true });
     jogos.push({ "mandante": "Botafogo", "visitante": "Santos", "golsMandante": 2, "golsVisitante": 1, "campeonato": "Brasileirão 2026", "data": "2026-07-16", "estadio": "Nilton Santos", "horario": "19:30", "presente": true });
     jogos.push({ "mandante": "Bahia", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 1, "campeonato": "Brasileirão 2026", "data": "2026-05-30", "estadio": "Fonte Nova", "horario": "17:30" });
     jogos.push({ "mandante": "Caracas", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 3, "campeonato": "Copa Sul-Americana 2026", "data": "2026-05-27", "estadio": "Olímpico de Caracas", "horario": "19:00" });
