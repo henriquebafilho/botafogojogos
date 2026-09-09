@@ -151,9 +151,14 @@ export default function LinhaJogo({ meuTime, jogo, onSelectAdversario, onSelectE
                 {/* Score */}
                 <Box sx={{ textAlign: 'center', minWidth: 80 }}>
                     {isWO && (
-                        <Typography sx={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '1.8rem', color: '#fff', textShadow, letterSpacing: 2 }}>
-                            WO
-                        </Typography>
+                        <>
+                            <Typography sx={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '1.8rem', color: '#fff', textShadow, letterSpacing: 2, lineHeight: 1 }}>
+                                WO
+                            </Typography>
+                            <Typography sx={{ fontSize: '1.1rem', color: '#fff', textShadow, lineHeight: 1 }}>
+                                {jogo.golsMandante === 'WO' ? '←' : '→'}
+                            </Typography>
+                        </>
                     )}
                     {!isWO && hasScore && (
                         <Typography sx={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '2.2rem', color: '#fff', textShadow, letterSpacing: 3, lineHeight: 1 }}>
