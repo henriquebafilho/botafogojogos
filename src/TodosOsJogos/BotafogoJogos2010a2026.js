@@ -3,6 +3,7 @@
 // ao editar pelo app do GitHub no celular (isso já aconteceu uma vez).
 let jogos = [];
 
+    jogos.push({ "mandante": "Botafogo", "visitante": "Grêmio", "golsMandante": 3, "golsVisitante": 2, "campeonato": "Brasileirão 2026", "data": "2026-09-16", "estadio": "Nilton Santos", "presente": true, "horario": "19:30" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Red Bull Bragantino", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Brasileirão 2026", "data": "2026-09-12", "estadio": "Nilton Santos", "presente": true, "horario": "20:30" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Palmeiras", "golsMandante": 0, "golsVisitante": 0, "campeonato": "Brasileirão 2026", "data": "2026-09-06", "estadio": "Nilton Santos", "horario": "18:30", "presente": true });
     jogos.push({ "mandante": "Flamengo", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 0, "campeonato": "Brasileirão 2026", "data": "2026-08-30", "estadio": "Maracanã", "horario": "16:00", "presente": true });
