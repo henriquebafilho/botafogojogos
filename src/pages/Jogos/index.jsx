@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './jogos.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import MuiTabs from '@mui/material/Tabs';
 import MuiTab from '@mui/material/Tab';
@@ -115,7 +114,7 @@ function JogosTab({ subTab, onSelectEstadio, onSelectAdversario }) {
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
                 <ToggleButtonGroup
-                    value={subTab === 'nestedia' ? 'botafogo' : subTab}
+                    value={subTab}
                     exclusive
                     onChange={(_, v) => { if (v) goToSubTab(v); }}
                     size="small"
@@ -124,23 +123,35 @@ function JogosTab({ subTab, onSelectEstadio, onSelectAdversario }) {
                     <ToggleButton value="proximos">Próximos Jogos</ToggleButton>
                 </ToggleButtonGroup>
 
-                <Button
+                <ToggleButtonGroup
+                    value={subTab}
+                    exclusive
+                    onChange={(_, v) => { if (v) goToSubTab(v); }}
                     size="small"
-                    startIcon={<CakeIcon />}
-                    onClick={() => goToSubTab(subTab === 'nestedia' ? 'botafogo' : 'nestedia')}
-                    variant={subTab === 'nestedia' ? 'contained' : 'outlined'}
-                    sx={{
-                        color: subTab === 'nestedia' ? '#0d1117' : nesteDiaLista.length > 0 ? '#e3b341' : '#8b949e',
-                        borderColor: nesteDiaLista.length > 0 ? '#e3b341' : '#30363d',
-                        backgroundColor: subTab === 'nestedia' ? '#e3b341' : 'transparent',
-                        '&:hover': {
-                            borderColor: '#e3b341',
-                            backgroundColor: subTab === 'nestedia' ? '#c9a030' : 'rgba(227,179,65,0.08)',
-                        },
-                    }}
                 >
-                    Neste dia{nesteDiaLista.length > 0 ? ` (${nesteDiaLista.length})` : ''}
-                </Button>
+                    <ToggleButton
+                        value="nestedia"
+                        sx={{
+                            color: nesteDiaLista.length > 0 ? '#e3b341' : undefined,
+                            borderColor: nesteDiaLista.length > 0 ? '#e3b341' : undefined,
+                            '&:hover': {
+                                borderColor: '#e3b341',
+                                backgroundColor: 'rgba(227,179,65,0.08)',
+                            },
+                            '&.Mui-selected': {
+                                color: '#0d1117',
+                                backgroundColor: '#e3b341',
+                                borderColor: '#e3b341',
+                            },
+                            '&.Mui-selected:hover': {
+                                backgroundColor: '#c9a030',
+                            },
+                        }}
+                    >
+                        <CakeIcon fontSize="small" sx={{ mr: 0.75 }} />
+                        Neste dia{nesteDiaLista.length > 0 ? ` (${nesteDiaLista.length})` : ''}
+                    </ToggleButton>
+                </ToggleButtonGroup>
             </Box>
 
             {subTab === 'nestedia' && (

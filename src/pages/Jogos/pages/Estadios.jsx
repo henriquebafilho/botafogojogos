@@ -15,6 +15,7 @@ import 'flag-icons/css/flag-icons.min.css';
 import common from '../common';
 import estadiosLocais from '../estadiosLocais';
 import coordenadas from '../estadiosCoordenadas';
+import coordenadasSemEstadio from '../locaisSemEstadio';
 import { slugify, findBySlug } from '../slug';
 import SearchBox from '../components/SearchBox';
 import ViewEstadio from './viewScreens/ViewEstadio';
@@ -25,6 +26,17 @@ L.Icon.Default.mergeOptions({
     iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
     iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
     shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+});
+
+// Yellow marker for locations without a recorded stadium — just a city/country
+const iconeAmarelo = new L.Icon({
+    iconUrl: 'https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-yellow.png',
+    iconRetinaUrl: 'https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-2x-yellow.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
 });
 
 const normalize = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
@@ -42,6 +54,15 @@ const todosEstadios = (() => {
         return diff !== 0 ? diff : a.localeCompare(b);
     });
     return arr;
+})();
+
+// Jogos sem estádio registrado — só a cidade/país entre parênteses
+const todosLocaisSemEstadio = (() => {
+    const set = new Set();
+    for (const j of jogos) {
+        if (j.estadio && j.estadio[0] === '(') set.add(j.estadio);
+    }
+    return Array.from(set);
 })();
 
 function EstadioRow({ estadio, onClick }) {
@@ -98,7 +119,8 @@ function GroupHeader({ label, count, flag, uf }) {
 
 function MapaEstadios({ estadios, onSelect }) {
     const comCoordenadas = estadios.filter(e => coordenadas[e]);
-    if (comCoordenadas.length === 0) return (
+    const locaisComCoordenadas = todosLocaisSemEstadio.filter(l => coordenadasSemEstadio[l]);
+    if (comCoordenadas.length === 0 && locaisComCoordenadas.length === 0) return (
         <Typography color="text.secondary" textAlign="center">Nenhum estádio com coordenadas disponíveis</Typography>
     );
     const center = [-22.9, -43.2];
@@ -106,8 +128,8 @@ function MapaEstadios({ estadios, onSelect }) {
         <Box sx={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #30363d', height: 480 }}>
             <MapContainer center={center} zoom={4} style={{ height: '100%', width: '100%' }}>
                 <TileLayer
-                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-                    attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                    attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
                 />
                 {comCoordenadas.map(estadio => {
                     const total = common.getTotalEstadio(estadio, jogos);
@@ -135,6 +157,32 @@ function MapaEstadios({ estadios, onSelect }) {
                         </Marker>
                     );
                 })}
+                {locaisComCoordenadas.map(local => {
+                    const total = common.getTotalEstadio(local, jogos);
+                    return (
+                        <Marker key={local} position={coordenadasSemEstadio[local]} icon={iconeAmarelo}>
+                            <Popup>
+                                <Box sx={{ minWidth: 140, textAlign: 'center' }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, mb: 0.5 }}>{local.slice(1, -1)}</Typography>
+                                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
+                                        {total} {total === 1 ? 'jogo' : 'jogos'} (estádio não registrado)
+                                    </Typography>
+                                    <Box
+                                        component="button"
+                                        onClick={() => onSelect(local)}
+                                        style={{
+                                            background: '#e3b341', color: '#0d1117', border: 'none',
+                                            borderRadius: 4, padding: '4px 12px', cursor: 'pointer',
+                                            fontSize: 12, fontWeight: 700,
+                                        }}
+                                    >
+                                        Ver jogos
+                                    </Box>
+                                </Box>
+                            </Popup>
+                        </Marker>
+                    );
+                })}
             </MapContainer>
         </Box>
     );
@@ -151,7 +199,7 @@ export default function Estadios({ meuTime, onSelectAdversario }) {
 
     const filtro = FILTROS_VALIDOS.includes(param) ? param : 'todos';
     const estadioAtual = (param && !FILTROS_VALIDOS.includes(param))
-        ? findBySlug(todosEstadios, param)
+        ? (findBySlug(todosEstadios, param) || findBySlug(todosLocaisSemEstadio, param))
         : null;
 
     const irParaFiltro = (v) => navigate(v === 'todos' ? '/estadios' : `/estadios/${v}`);
