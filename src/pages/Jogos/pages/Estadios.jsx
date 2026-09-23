@@ -131,6 +131,7 @@ function MapaEstadios({ estadios, onSelect }) {
                     url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
                     attribution='&copy; <a href="https://www.esri.com/">Esri</a>'
                 />
+                <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}" />
                 {comCoordenadas.map(estadio => {
                     const total = common.getTotalEstadio(estadio, jogos);
                     return (
