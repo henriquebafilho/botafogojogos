@@ -5,10 +5,10 @@ function jogos() {
     jogos.push({ "mandante": "Botafogo", "visitante": "Bahia", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-11-28", "estadio": "Nilton Santos", "presente": false });
     jogos.push({ "mandante": "Botafogo", "visitante": "São Paulo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-11-21", "estadio": "Nilton Santos", "presente": false });
     jogos.push({ "mandante": "Corinthians", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-11-18", "estadio": "Neo Química Arena", "presente": false });
-    jogos.push({ "mandante": "Botafogo", "visitante": "Atlético-MG", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-11-04", "estadio": "Nilton Santos", "presente": false });
-    jogos.push({ "mandante": "Remo", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-28", "estadio": "Mangueirão", "presente": false });
-    jogos.push({ "mandante": "Internacional", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-24", "estadio": "Beira-Rio", "presente": false });
-    jogos.push({ "mandante": "Botafogo", "visitante": "Chapecoense", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-17", "estadio": "Nilton Santos", "presente": false });
+    jogos.push({ "mandante": "Botafogo", "visitante": "Atlético-MG", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-11-04", "estadio": "Nilton Santos", "presente": false, "horario": "21:30" });
+    jogos.push({ "mandante": "Remo", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-28", "estadio": "Mangueirão", "presente": false, "horario": "21:30" });
+    jogos.push({ "mandante": "Internacional", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-24", "estadio": "Beira-Rio", "presente": false, "horario": "16:30" });
+    jogos.push({ "mandante": "Botafogo", "visitante": "Chapecoense", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-17", "estadio": "Nilton Santos", "presente": false, "horario": "18:00" });
     jogos.push({ "mandante": "Coritiba", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-12", "estadio": "Couto Pereira", "presente": false, "horario": "16:00" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Vasco", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-07", "estadio": "Nilton Santos", "presente": false, "horario": "20:30" });
 
