@@ -8,6 +8,7 @@ export default function Estatisticas({ meuTime, jogos }) {
     const v = common.getVitorias(meuTime, jogos);
     const e = common.getEmpates(meuTime, jogos);
     const d = common.getDerrotas(meuTime, jogos);
+    const { feitos, sofridos } = common.getGols(meuTime, jogos);
 
     return (
         <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}><Box sx={{ display: 'inline-flex', flexDirection: 'column', minWidth: 200, maxWidth: '100%' }}>
@@ -26,6 +27,16 @@ export default function Estatisticas({ meuTime, jogos }) {
             <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block', textAlign: 'center' }}>
                 {total} jogo{total !== 1 ? 's' : ''}
             </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 1 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                    <Box sx={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#e6edf3' }} />
+                    <Typography variant="caption" color="text.secondary">{feitos} gol{feitos !== 1 ? 's' : ''} marcado{feitos !== 1 ? 's' : ''}</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                    <Box sx={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#f85149' }} />
+                    <Typography variant="caption" color="text.secondary">{sofridos} gol{sofridos !== 1 ? 's' : ''} sofrido{sofridos !== 1 ? 's' : ''}</Typography>
+                </Box>
+            </Box>
         </Box></Box>
     );
 }

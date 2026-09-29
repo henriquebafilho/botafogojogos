@@ -93,6 +93,23 @@ const getDerrotas = (meuTime, jogos) => {
     return derrotas;
 }
 
+const getGols = (meuTime, jogos) => {
+    var feitos = 0;
+    var sofridos = 0;
+    for (var a in jogos) {
+        const jogo = jogos[a];
+        if (jogo.golsMandante === "WO" || jogo.golsVisitante === "WO") continue;
+        if (jogo.mandante === meuTime) {
+            feitos += Number(jogo.golsMandante);
+            sofridos += Number(jogo.golsVisitante);
+        } else if (jogo.visitante === meuTime) {
+            feitos += Number(jogo.golsVisitante);
+            sofridos += Number(jogo.golsMandante);
+        }
+    }
+    return { feitos, sofridos };
+}
+
 const textShadow = "0 0 3px #000000, 0 0 3px #000000, 0 0 3px #000000, 0 0 3px #000000, 0 0 3px #000000";
 
 const commonFunctions = {
@@ -103,6 +120,7 @@ const commonFunctions = {
     getVitorias,
     getEmpates,
     getDerrotas,
+    getGols,
     textShadow
 }
 

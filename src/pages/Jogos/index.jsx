@@ -3,6 +3,8 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './jogos.css';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import MuiTabs from '@mui/material/Tabs';
 import MuiTab from '@mui/material/Tab';
@@ -25,15 +27,43 @@ const meuTime = 'Botafogo';
 const jogos = [...common.jogos].sort((a, b) => b.data.localeCompare(a.data));
 
 const hoje = new Date();
-const mmddHoje = String(hoje.getMonth() + 1).padStart(2, '0') + '-' + String(hoje.getDate()).padStart(2, '0');
-const nesteDiaLista = [...common.jogos]
-    .filter(j => j.data.slice(5) === mmddHoje)
+const isoHoje = hoje.getFullYear() + '-' + String(hoje.getMonth() + 1).padStart(2, '0') + '-' + String(hoje.getDate()).padStart(2, '0');
+const mmddHoje = isoHoje.slice(5);
+
+const getJogosNoDia = (mmdd) => [...common.jogos]
+    .filter(j => j.data.slice(5) === mmdd)
     .sort((a, b) => b.data.localeCompare(a.data));
 
+const nesteDiaLista = getJogosNoDia(mmddHoje);
+
 function NesteDiaList({ onSelectEstadio, onSelectAdversario }) {
+    const [dataSelecionada, setDataSelecionada] = useState(isoHoje);
+    const mmdd = dataSelecionada.slice(5);
+    const jogosDoDia = mmdd === mmddHoje ? nesteDiaLista : getJogosNoDia(mmdd);
+
     return (
         <Box>
-            {nesteDiaLista.map(jogo => {
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mb: 3 }}>
+                <TextField
+                    type="date"
+                    size="small"
+                    value={dataSelecionada}
+                    onChange={(e) => e.target.value && setDataSelecionada(e.target.value)}
+                />
+                {dataSelecionada !== isoHoje && (
+                    <Button size="small" onClick={() => setDataSelecionada(isoHoje)}>
+                        Hoje
+                    </Button>
+                )}
+            </Box>
+
+            {jogosDoDia.length === 0 && (
+                <Typography color="text.secondary" textAlign="center">
+                    Nenhum jogo registrado nesse dia
+                </Typography>
+            )}
+
+            {jogosDoDia.map(jogo => {
                 const year = jogo.data.slice(0, 4);
                 return (
                     <React.Fragment key={jogo.mandante + jogo.visitante + jogo.data}>
