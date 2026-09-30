@@ -979,7 +979,7 @@ let jogos = [];
     jogos.push({ "mandante": "Cruzeiro", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 0, "campeonato": "Brasileirão 1993", "data": "1993-10-09", "estadio": "Mineirão" });
     jogos.push({ "mandante": "Bahia", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 0, "campeonato": "Brasileirão 1993", "data": "1993-10-06", "estadio": "Fonte Nova" });
     jogos.push({ "mandante": "Botafogo", "visitante": "São Paulo", "golsMandante": 0, "golsVisitante": 4, "campeonato": "Brasileirão 1993", "data": "1993-10-03", "estadio": "Maracanã" });
-    jogos.push({ "mandante": "Botafogo", "visitante": "Peñarol", "golsMandante": 2, "golsVisitante": 2, "campeonato": "Copa Conmebol 93", "data": "1993-09-28", "estadio": "Maracanã", "penaltis": "3 x 1" });
+    jogos.push({ "mandante": "Botafogo", "visitante": "Peñarol", "golsMandante": 2, "golsVisitante": 2, "campeonato": "Copa Conmebol 93", "data": "1993-09-30", "estadio": "Maracanã", "penaltis": "3 x 1" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Flamengo", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Brasileirão 1993", "data": "1993-09-26", "estadio": "Maracanã" });
     jogos.push({ "mandante": "Peñarol", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Copa Conmebol 93", "data": "1993-09-22", "estadio": "Centenario-URU" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Corinthians", "golsMandante": 0, "golsVisitante": 1, "campeonato": "Brasileirão 1993", "data": "1993-09-20", "estadio": "Caio Martins" });
