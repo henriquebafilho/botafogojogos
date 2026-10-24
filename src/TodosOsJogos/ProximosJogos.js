@@ -7,7 +7,7 @@ function jogos() {
     jogos.push({ "mandante": "Corinthians", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-11-18", "estadio": "Neo Química Arena", "presente": false });
     jogos.push({ "mandante": "Botafogo", "visitante": "Atlético-MG", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-11-04", "estadio": "Nilton Santos", "presente": false, "horario": "21:30" });
     jogos.push({ "mandante": "Remo", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-28", "estadio": "Mangueirão", "presente": false, "horario": "21:30" });
-    jogos.push({ "mandante": "Internacional", "visitante": "Botafogo", "golsMandante": "", "golsVisitante": "", "campeonato": "Brasileirão 2026", "data": "2026-10-24", "estadio": "Beira-Rio", "presente": false, "horario": "16:30" });
+    jogos.push({ "mandante": "Internacional", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 0, "campeonato": "Brasileirão 2026", "data": "2026-10-24", "estadio": "Beira-Rio", "presente": false, "horario": "16:30" });
 
     jogos.sort(function (a, b) {
         return a.data < b.data ? -1 : a.data > b.data ? 1 : 0;
