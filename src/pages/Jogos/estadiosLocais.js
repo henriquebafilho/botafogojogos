@@ -149,7 +149,6 @@ const estadiosLocais = {
     "Engenho de Dentro":                    { cidade: "Rio de Janeiro", estado: "Rio de Janeiro", uf: "RJ" },
     "Ernestão":                             { cidade: "Joinville", estado: "Santa Catarina", uf: "SC" },
     "Ernst Happel Stadion":                 { cidade: "Viena", pais: "Áustria", codigo: "at" },
-    "Esperança":                            { cidade: "Itajubá", estado: "Minas Gerais", uf: "MG" },
     "Esperidião Geraidine":                 { cidade: "Barra Mansa", estado: "Rio de Janeiro", uf: "RJ" },
     "Estadi de Sarriá":                     { cidade: "Barcelona", pais: "Espanha", codigo: "es" },
     "Estadio Uno":                          { cidade: "La Plata", pais: "Argentina", codigo: "ar" },

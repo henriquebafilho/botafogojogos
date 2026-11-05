@@ -1169,7 +1169,7 @@ let jogos = [];
     jogos.push({ "mandante": "São Cristóvão", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 2, "campeonato": "Torneio Extra 1938", "data": "1938-10-20", "estadio": "Figueira de Melo" });
     jogos.push({ "mandante": "Portuguesa Santista", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1938-11-20", "estadio": "Ulrico Mursa" });
     jogos.push({ "mandante": "Botafogo", "visitante": "São Cristóvão", "golsMandante": 2, "golsVisitante": 0, "campeonato": "Torneio Extra 1938", "data": "1938-11-24", "estadio": "Laranjeiras" });
-    jogos.push({ "mandante": "Fábrica de Armas", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 6, "campeonato": "Amistoso", "data": "1939-07-16", "estadio": "Esperança" });
+    jogos.push({ "mandante": "Fábrica de Armas", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 6, "campeonato": "Amistoso", "data": "1939-07-16", "estadio": "Coronel Belo Lisboa" });
     jogos.push({ "mandante": "Bangu", "visitante": "Botafogo", "golsMandante": 4, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1907-09-01", "estadio": "Rua Ferrer" });
     jogos.push({ "mandante": "Bangu", "visitante": "Botafogo", "golsMandante": 4, "golsVisitante": 1, "campeonato": "Amistoso", "data": "1907-10-20", "estadio": "Rua Ferrer" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Bangu", "golsMandante": 6, "golsVisitante": 0, "campeonato": "Torneio Municipal 1944", "data": "1944-04-15", "estadio": "Laranjeiras" });

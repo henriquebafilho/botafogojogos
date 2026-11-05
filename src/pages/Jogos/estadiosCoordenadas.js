@@ -121,7 +121,6 @@ const coordenadas = {
     "Engenho de Dentro":                     [-22.8944, -43.2762],
     "Ernestão":                              [-26.3172, -48.8556],
     "Ernst Happel Stadion":                  [48.2019, 16.4109],
-    "Esperança":                             [-22.4256, -45.4525],
     "Esperidião Geraidine":                  [-22.5451, -44.174],
     "Estadi de Sarriá":                      [41.3953, 2.1287],
     "Estádio da Baixada":                    [-25.4484, -49.2765],
