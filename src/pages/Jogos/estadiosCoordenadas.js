@@ -101,6 +101,7 @@ const coordenadas = {
     "Conselheiro Galvão":                    [-21.7542, -41.3244],
     "Correão":                               [-22.8894, -42.0286],
     "Correão-PI":                            [-5.0846, -42.8208],
+    "Coronel Belo Lisboa":                   [-22.4283, -45.457],
     "Couto Pereira":                         [-25.438, -49.2714],
     "Craven Cottage":                        [51.4749, -0.2216],
     "Crystal Palace Training Ground":        [51.4103, -0.0243],

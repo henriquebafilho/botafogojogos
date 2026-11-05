@@ -360,6 +360,7 @@ const estados = {
     "Ypiranga":                            { estado: "Rio Grande do Sul",    uf: "RS" },
     "Ypiranga de Niterói":                 { estado: "Rio de Janeiro",       uf: "RJ" },
     "Ypiranga-BA":                         { estado: "Bahia",                uf: "BA" },
+    "Yuracan":                             { estado: "Minas Gerais",         uf: "MG" },
 };
 
 export default estados;

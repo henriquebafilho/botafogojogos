@@ -53,6 +53,7 @@ const paises = {
     "Centro Gallego":                         { pais: "Cuba",                    codigo: "cu" },
     "Cerezo Osaka":                           { pais: "Japão",                   codigo: "jp" },
     "Cerro Porteño":                          { pais: "Paraguai",                codigo: "py" },
+    "Cienciano":                              { pais: "Peru",                    codigo: "pe" },
     "César Vallejo":                          { pais: "Peru",                    codigo: "pe" },
     "Charleroi":                              { pais: "Bélgica",                 codigo: "be" },
     "Charlton Athletic":                      { pais: "Inglaterra",              codigo: "gb-eng" },

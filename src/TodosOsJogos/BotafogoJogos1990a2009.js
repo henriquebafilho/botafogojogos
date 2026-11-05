@@ -969,6 +969,7 @@ let jogos = [];
     jogos.push({ "mandante": "Americano", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 0, "campeonato": "Carioca 1994", "data": "1994-02-09", "estadio": "Godofredo Cruz" });
     jogos.push({ "mandante": "Olaria", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 0, "campeonato": "Carioca 1994", "data": "1994-02-06", "estadio": "Rua Bariri" });
     jogos.push({ "mandante": "Botafogo", "visitante": "América-RJ", "golsMandante": 6, "golsVisitante": 0, "campeonato": "Carioca 1994", "data": "1994-01-30", "estadio": "Caio Martins" });
+    jogos.push({ "mandante": "Yuracan", "visitante": "Botafogo", "golsMandante": 0, "golsVisitante": 6, "campeonato": "Amistoso", "data": "1994-01-16", "estadio": "Coronel Belo Lisboa" });
     jogos.push({ "mandante": "São Paulo", "visitante": "Botafogo", "golsMandante": 1, "golsVisitante": 0, "campeonato": "Brasileirão 1993", "data": "1993-11-14", "estadio": "Morumbi" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Bahia", "golsMandante": 3, "golsVisitante": 0, "campeonato": "Brasileirão 1993", "data": "1993-11-05", "estadio": "Caio Martins" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Internacional", "golsMandante": 2, "golsVisitante": 0, "campeonato": "Brasileirão 1993", "data": "1993-11-03", "estadio": "Caio Martins" });

@@ -656,7 +656,7 @@ function Times(time, data) {
                   nomeAtual = time;
                   escudo = time;
                   backgroundColor = "#fede00";
-                  letterColor = "black";
+                  letterColor = "#086a30";
                   break;
             case "Brusque":
                   nomeAtual = time;
@@ -1708,6 +1708,12 @@ function Times(time, data) {
                   escudo = time;
                   backgroundColor = "#d30a11";
                   letterColor = "white";
+                  break;
+            case "Yuracan":
+                  nomeAtual = time;
+                  escudo = time;
+                  backgroundColor = "white";
+                  letterColor = "black";
                   break;
             case "Smart":
                   nomeAtual = time;
