@@ -3,7 +3,7 @@ name: Promote finished games to BotafogoJogos
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'src/TodosOsJogos/ProximosJogos.js'
 

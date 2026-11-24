@@ -3,7 +3,7 @@ name: Sync attended games to myLife
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'src/TodosOsJogos/BotafogoJogos.js'
       - 'src/TodosOsJogos/ProximosJogos.js'
