@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/TodosOsJogos/BotafogoJogos.js'
+      - 'src/TodosOsJogos/BotafogoJogos*.js'
       - 'src/TodosOsJogos/ProximosJogos.js'
 
 jobs:

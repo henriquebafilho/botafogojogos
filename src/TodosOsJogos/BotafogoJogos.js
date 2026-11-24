@@ -1,5 +1,5 @@
 import ProximosJogos from "./ProximosJogos";
-import jogos2010a2026 from "./BotafogoJogos2010a2026";
+import jogos2010a2030 from "./BotafogoJogos2010a2030";
 import jogos1990a2009 from "./BotafogoJogos1990a2009";
 import jogos1970a1989 from "./BotafogoJogos1970a1989";
 import jogos1950a1969 from "./BotafogoJogos1950a1969";
@@ -9,7 +9,7 @@ let jogosCache = null;
 
 function buildJogos() {
     let jogos = [
-        ...jogos2010a2026,
+        ...jogos2010a2030,
         ...jogos1990a2009,
         ...jogos1970a1989,
         ...jogos1950a1969,

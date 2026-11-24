@@ -9,7 +9,7 @@ const path = require('path');
 
 const MYLIFE_DB = path.join(__dirname, '../../myLife/database/jogos/index.jsx');
 const BOTAFOGO_JOGOS_FILES = [
-    '../src/TodosOsJogos/BotafogoJogos2010a2026.js',
+    '../src/TodosOsJogos/BotafogoJogos2010a2030.js',
     '../src/TodosOsJogos/BotafogoJogos1990a2009.js',
     '../src/TodosOsJogos/BotafogoJogos1970a1989.js',
     '../src/TodosOsJogos/BotafogoJogos1950a1969.js',

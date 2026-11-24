@@ -16,7 +16,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const BOTAFOGO_JOGOS = path.join(__dirname, '../src/TodosOsJogos/BotafogoJogos2010a2026.js');
+const BOTAFOGO_JOGOS = path.join(__dirname, '../src/TodosOsJogos/BotafogoJogos2010a2030.js');
 const ARCHIVE_FILES = [
     '../src/TodosOsJogos/BotafogoJogos1990a2009.js',
     '../src/TodosOsJogos/BotafogoJogos1970a1989.js',

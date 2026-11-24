@@ -20,7 +20,7 @@ const MYLIFE_ROOT = process.argv[2]
     : path.join(__dirname, '../../myLife');
 
 const BOTAFOGO_JOGOS_FILES = [
-    '../src/TodosOsJogos/BotafogoJogos2010a2026.js',
+    '../src/TodosOsJogos/BotafogoJogos2010a2030.js',
     '../src/TodosOsJogos/BotafogoJogos1990a2009.js',
     '../src/TodosOsJogos/BotafogoJogos1970a1989.js',
     '../src/TodosOsJogos/BotafogoJogos1950a1969.js',
