@@ -262,7 +262,7 @@ const coordenadas = {
     "Misael Delgado":                        [10.1833, -67.9833],
     "Mithatpasa":                            [38.4258, 27.1355],
     "Moacyrzão":                             [-22.3831, -41.7906],
-    "Moça Bonita":                           [-22.7558, -43.4511],
+    "Moça Bonita":                           [-22.8725, -43.4567],
     "Mohammed V":                            [33.5928, -7.6323],
     "Moisés Lucarelli":                      [-22.8994, -47.0522],
     "Monumental Banco Pichincha":            [-2.1614, -79.9018],

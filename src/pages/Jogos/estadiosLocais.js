@@ -24,7 +24,7 @@ const estadiosLocais = {
     "Mineirão":                             { cidade: "Belo Horizonte", estado: "Minas Gerais", uf: "MG" },
     "Monumental de Núñez":                  { cidade: "Buenos Aires", pais: "Argentina", codigo: "ar" },
     "Morumbi":                              { cidade: "São Paulo", estado: "São Paulo", uf: "SP" },
-    "Moça Bonita":                          { cidade: "Nova Iguaçu", estado: "Rio de Janeiro", uf: "RJ" },
+    "Moça Bonita":                          { cidade: "Rio de Janeiro", estado: "Rio de Janeiro", uf: "RJ" },
     "Mário Helênio":                        { cidade: "Juiz de Fora", estado: "Minas Gerais", uf: "MG" },
     "Nabi Abi Chedid":                      { cidade: "Bragança Paulista", estado: "São Paulo", uf: "SP" },
     "Neo Química Arena":                    { cidade: "São Paulo", estado: "São Paulo", uf: "SP" },
