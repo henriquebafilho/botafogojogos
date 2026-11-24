@@ -4,6 +4,7 @@
 let jogos = [];
 
 jogos.push({ "mandante": "Internacional", "visitante": "Botafogo", "golsMandante": 3, "golsVisitante": 0, "campeonato": "Brasileirão 2026", "data": "2026-10-24", "estadio": "Beira-Rio", "presente": true, "horario": "16:30" });
+    jogos.push({ "mandante": "Botafogo", "visitante": "São Paulo", "golsMandante": 1, "golsVisitante": 1, "campeonato": "Brasileirão 2026", "data": "2026-11-23", "estadio": "Nilton Santos", "presente": true, "horario": "20:00" });
     jogos.push({ "mandante": "Corinthians", "visitante": "Botafogo", "golsMandante": 4, "golsVisitante": 0, "campeonato": "Brasileirão 2026", "data": "2026-11-18", "estadio": "Neo Química Arena", "presente": false, "horario": "21:30" });
     jogos.push({ "mandante": "Botafogo", "visitante": "Atlético-MG", "golsMandante": 1, "golsVisitante": 0, "campeonato": "Brasileirão 2026", "data": "2026-11-04", "estadio": "Nilton Santos", "presente": true, "horario": "21:30" });
     jogos.push({ "mandante": "Remo", "visitante": "Botafogo", "golsMandante": 2, "golsVisitante": 1, "campeonato": "Brasileirão 2026", "data": "2026-10-28", "estadio": "Mangueirão", "presente": true, "horario": "21:30" });
