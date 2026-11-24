@@ -1,6 +1,7 @@
 name: Sync attended games to myLife
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths:
@@ -13,19 +14,19 @@ jobs:
 
     steps:
       - name: Checkout jogosquefui
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Checkout myLife
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository_owner }}/myLife
           token: ${{ secrets.MYLIFE_PAT }}
           path: myLife
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Run sync script
         run: node scripts/sync-to-mylife.js myLife

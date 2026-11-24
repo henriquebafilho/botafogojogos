@@ -1,6 +1,7 @@
 name: Promote finished games to BotafogoJogos
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     paths:
@@ -15,14 +16,14 @@ jobs:
 
     steps:
       - name: Checkout botafogojogos
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Run promote script
         run: node scripts/promote-finished-games.js
