@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './jogos.css';
 import Box from '@mui/material/Box';
@@ -36,11 +36,7 @@ const getJogosNoDia = (mmdd) => [...common.jogos]
 
 const nesteDiaLista = getJogosNoDia(mmddHoje);
 
-function NesteDiaList({ onSelectEstadio, onSelectAdversario }) {
-    const [dataSelecionada, setDataSelecionada] = useState(isoHoje);
-    const mmdd = dataSelecionada.slice(5);
-    const jogosDoDia = mmdd === mmddHoje ? nesteDiaLista : getJogosNoDia(mmdd);
-
+function NesteDiaList({ dataSelecionada, setDataSelecionada, jogosDoDia, onSelectEstadio, onSelectAdversario }) {
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mb: 3 }}>
@@ -139,6 +135,9 @@ const TAB_PATHS = ['/', '/anos', '/estadios', '/adversarios'];
 function JogosTab({ subTab, onSelectEstadio, onSelectAdversario }) {
     const navigate = useNavigate();
     const goToSubTab = (v) => navigate(SUBTAB_PATHS[v]);
+    const [dataSelecionada, setDataSelecionada] = useState(isoHoje);
+    const mmdd = dataSelecionada.slice(5);
+    const jogosDoDia = useMemo(() => (mmdd === mmddHoje ? nesteDiaLista : getJogosNoDia(mmdd)), [mmdd]);
 
     return (
         <Box>
@@ -162,8 +161,8 @@ function JogosTab({ subTab, onSelectEstadio, onSelectAdversario }) {
                     <ToggleButton
                         value="nestedia"
                         sx={{
-                            color: nesteDiaLista.length > 0 ? '#e3b341' : undefined,
-                            borderColor: nesteDiaLista.length > 0 ? '#e3b341' : undefined,
+                            color: jogosDoDia.length > 0 ? '#e3b341' : undefined,
+                            borderColor: jogosDoDia.length > 0 ? '#e3b341' : undefined,
                             '&:hover': {
                                 borderColor: '#e3b341',
                                 backgroundColor: 'rgba(227,179,65,0.08)',
@@ -179,13 +178,13 @@ function JogosTab({ subTab, onSelectEstadio, onSelectAdversario }) {
                         }}
                     >
                         <CakeIcon fontSize="small" sx={{ mr: 0.75 }} />
-                        Neste dia{nesteDiaLista.length > 0 ? ` (${nesteDiaLista.length})` : ''}
+                        Neste dia{jogosDoDia.length > 0 ? ` (${jogosDoDia.length})` : ''}
                     </ToggleButton>
                 </ToggleButtonGroup>
             </Box>
 
             {subTab === 'nestedia' && (
-                <NesteDiaList onSelectEstadio={onSelectEstadio} onSelectAdversario={onSelectAdversario} />
+                <NesteDiaList dataSelecionada={dataSelecionada} setDataSelecionada={setDataSelecionada} jogosDoDia={jogosDoDia} onSelectEstadio={onSelectEstadio} onSelectAdversario={onSelectAdversario} />
             )}
             {subTab === 'botafogo' && (
                 <JogosList onSelectEstadio={onSelectEstadio} onSelectAdversario={onSelectAdversario} />
